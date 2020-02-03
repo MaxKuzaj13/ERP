@@ -63,10 +63,8 @@ def print_menu(title, list_options, exit_message):
     options = list_options
     print(title)
     for value in range(len(options)):
-        print(f"({value}), {options[value]}")
+        print(f"({value+1}), {options[value]}")
 
-
-        
 
 
 def get_inputs(list_labels, title):
