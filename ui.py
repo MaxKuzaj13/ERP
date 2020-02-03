@@ -60,11 +60,12 @@ def print_menu(title, list_options, exit_message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
+    #Main Menu with dictionary
     options = {1: "Store manager", 2: "Human resources manager", 3: "Inventory manager", 4: "Accounting Manager", 5: "Sales Manager", 6: "CRM", 0: "Exit Program"}
     print("Main Menu:")
     for key, value in options.items():
-        print(f("({key}), {value}")
+        #print f" to put "key" inside "()"
+        print(f"({key}) {value}")
         
 
 
