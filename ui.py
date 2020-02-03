@@ -21,8 +21,35 @@ def print_table(table, title_list):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
+    maxLengths=[] #list of max lenghts in columns
+    width=1 #table width
 
-    # your goes code
+#Column widths
+    for j in range(0,len(title_list)): # j-column index
+        max=len(title_list[j])
+        for i in range(0,len(table)): # i-row index
+            length=len((table[i])[j])
+            if max<length:
+                max=length
+        maxLengths.append(max)
+        width+=max+5
+
+#Printing titles
+    print()
+    for j in range(0,len(title_list)):
+        print("| ", title_list[j], end="")
+        print(" "*(maxLengths[j]-len(title_list[j])+2), end="")
+    print("|")
+
+
+#Printing table
+    print("="*width)
+    for i in range(0,len(table)): 
+        for j in range(0,len(title_list)):
+            print("| ", (table[i])[j], end="")
+            print(" "*(maxLengths[j]-len((table[i])[j])+2), end="")
+        print("|")
+        print("-"*width)
 
 
 def print_result(result, label):
@@ -63,7 +90,8 @@ def print_menu(title, list_options, exit_message):
     options = list_options
     print(title)
     for value in range(len(options)):
-        print(f"({value+1}), {options[value]}")
+        print(f"({value+1}) {options[value]}")
+    print(exit_message)
 
 
 
@@ -105,3 +133,13 @@ def print_error_message(message):
     """
 
     # your code
+
+#Test data
+
+titles=['ID', 'Name', 'Info']
+emp1=['gy5677fdsfbmsbadjhsagdjasdg76', "Anna Nowak", "x"]
+emp2=['g1', "Jan Ko", "hoho"]
+emp3=['g133', "Jan Konieczkokoko", "parapapa123"]
+emp4=['g1123', "Basia Bobu", "dupa"]
+employees=[emp1, emp2, emp3, emp4]
+print_table(employees,titles)
