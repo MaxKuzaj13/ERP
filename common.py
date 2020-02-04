@@ -3,6 +3,7 @@ implement commonly used functions here
 """
 
 import random
+import ui
 
 
 def generate_random(table):
@@ -24,22 +25,29 @@ def generate_random(table):
 
     return generated
 
-def choose_by_dic(dic_function):
-    inputs = ui.get_inputs(["Please enter a number: "], "")
+def choose_by_dic(dic_function, table, *args):
+    inputs = ui.get_inputs(["chouse option: "], " ")
     option = inputs[0]
     if option == "1":
-        dic_function[1]
+        dic_function["1"](table)
+        print('tap 1')
     elif option == "2":
-        hr.start_module()
+        print('tap 1')
+        #hr.start_module()
     elif option == "3":
-        inventory.start_module()
+        print('tap 1')
+        #inventory.start_module()
     elif option == "4":
-        accounting.start_module()
+        print('tap 1')
+        #accounting.start_module()
     elif option == "5":
-        sales.start_module()
+        print('tap 1')
+        #sales.start_module()
     elif option == "6":
-        crm.start_module()
+        print('tap 1')
+        #crm.start_module()
     elif option == "0":
-        sys.exit(0)
+        print('tap 2')
+        #sys.exit(0)
     else:
         raise KeyError("There is no such option.")

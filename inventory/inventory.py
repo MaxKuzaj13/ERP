@@ -16,8 +16,11 @@ import ui
 import data_manager
 # common module
 import common
+import sys
 
 file_name = "inventory/inventory.csv"
+table = data_manager.get_table_from_file(file_name)
+
 
 def start_module():
     """
@@ -28,16 +31,20 @@ def start_module():
     Returns:
         None
     """
+    #table = data_manager.get_table_from_file(file_name)
 
-    # your code
-    options = ["Show tale",
-               "Add", "Remove", "Update", "Get Available items, "]
-    ui.print_menu("Inventory", options, "Back to main menu")
-    ui.get_inputs(["Please enter a to chouse : "], "")
+    while True:
 
+        # your code
+        list_options = ["Show table", "Add", "Remove", "Update", "Get Available items"]
 
-    dic_function= {1: "inventory.show_table(table)", 2: "add(table)"}
-    common.choose_by_dic(dic_function)
+        ui.print_menu("Inventory", list_options, "Back to main menu")
+        # tu sie zjebało
+        #ui.get_inputs(["Please enter what do you want: "], "")
+
+        dic_function = {'1': show_table, "2": add}
+        common.choose_by_dic(dic_function, table)
+
 
 def show_table(table):
     """
@@ -49,9 +56,11 @@ def show_table(table):
     Returns:
         None
     """
-
     # your code
     print('huj huj huj ')
+    title_list = ["ID", "Title", 'gffdsaaf', ',sdasa']
+    ui.print_table(table, title_list)
+
 
 
 def add(table):
