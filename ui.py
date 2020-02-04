@@ -93,7 +93,6 @@ def print_menu(title, list_options, exit_message):
         print(f"({value+1}) {list_options[value]}")
     print(exit_message)
 
-        
 
 
 def get_inputs(list_labels, title):
