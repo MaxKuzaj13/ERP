@@ -26,8 +26,12 @@ def start_module():
     Returns:
         None
     """
-
-    # your code
+    list_options=['Add new customer', 
+                'Remove customer', 
+                'Update customer', 
+                'Show ID of customer with longest name', 
+                'Show customers which has subscripted the newsletter']
+    ui.print_menu("Customer relation management", list_options, "Back to main menu")
 
 
 def show_table(table):

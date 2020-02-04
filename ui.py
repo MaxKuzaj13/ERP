@@ -64,7 +64,11 @@ def print_result(result, label):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your code
+    print("Result:")
+
+    #if type(result)==list:
+
+    
 
 
 def print_menu(title, list_options, exit_message):
@@ -130,10 +134,21 @@ def print_error_message(message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
-    # your code
+    
+    print("Error: ", message)
 
 #Test data
+<<<<<<< HEAD
+"""
+titles=['ID', 'Name', 'Info']
+emp1=['gy5677fdsfbmsbadjhsagdjasdg76', "Anna Nowak", "x"]
+emp2=['g1', "Jan Ko", "hoho"]
+emp3=['g133', "Jan Konieczkokoko", "parapapa123"]
+emp4=['g1123', "Basia Bobu", "dupa"]
+employees=[emp1, emp2, emp3, emp4]
+print_table(employees,titles)
+"""
+=======
 
 # titles=['ID', 'Name', 'Info']
 # emp1=['gy5677fdsfbmsbadjhsagdjasdg76', "Anna Nowak", "x"]
@@ -142,3 +157,4 @@ def print_error_message(message):
 # emp4=['g1123', "Basia Bobu", "dupa"]
 # employees=[emp1, emp2, emp3, emp4]
 # print_table(employees,titles)
+>>>>>>> 09e0a0f6aa7a8b2e5126260e83d3022d34938535
