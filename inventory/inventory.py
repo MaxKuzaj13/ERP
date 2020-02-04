@@ -17,6 +17,7 @@ import data_manager
 # common module
 import common
 
+file_name = "inventory/inventory.csv"
 
 def start_module():
     """
@@ -29,7 +30,14 @@ def start_module():
     """
 
     # your code
+    options = ["Show tale",
+               "Add", "Remove", "Update", "Get Available items, "]
+    ui.print_menu("Inventory", options, "Back to main menu")
+    ui.get_inputs(["Please enter a to chouse : "], "")
 
+
+    dic_function= {1: "inventory.show_table(table)", 2: "add(table)"}
+    common.choose_by_dic(dic_function)
 
 def show_table(table):
     """
@@ -43,6 +51,7 @@ def show_table(table):
     """
 
     # your code
+    print('huj huj huj ')
 
 
 def add(table):
