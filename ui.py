@@ -87,10 +87,6 @@ def print_menu(title, list_options, exit_message):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-<<<<<<< HEAD
-=======
-    
->>>>>>> 6b61a948bc48fbf9e9ad3cbd86c11562d6c60a2d
     print(title)
     for value in range(len(list_options)):
         print(f"({value+1}) {list_options[value]}")
