@@ -28,10 +28,22 @@ def start_module():
     Returns:
         None
     """
-
-    # your code
-
-
+    file_name = "sales/sales.csv"
+    list_options = ["Show table",
+               "Add",
+               "Remove",
+               "Update",
+               "Get lowest price item",
+               "Get items sold between"]
+    
+    #options = list_options    
+    ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
+    ui.inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = ui.inputs[0]
+    if option == "1":
+        show_table(data_manager.get_table_from_file(file_name))    
+    # elif option == "2":
+    #     hr.start_module()
 def show_table(table):
     """
     Display a table
@@ -42,9 +54,9 @@ def show_table(table):
     Returns:
         None
     """
-
-    # your code
-
+    title_list = "ID", "Title", "Price", "Month", "Day", "Year"
+    ui.print_table(table, title_list)
+    #ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
 
 def add(table):
     """
