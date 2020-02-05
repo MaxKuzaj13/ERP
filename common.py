@@ -31,7 +31,7 @@ def generate_random(table):
     return generated
 
 def choose_by_dic(dic_function, table, *args):
-    inputs = ui.get_inputs(["chouse option: "], " ")
+    inputs = ui.get_inputs(["Choose option: "], " ")
     option = inputs[0]
     exit_code = 0
     if option == "1":
