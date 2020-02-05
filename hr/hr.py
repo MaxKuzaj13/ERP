@@ -28,18 +28,23 @@ def start_module():
     """
     while True:
         # List of available option
-        list_options = ['Show table',
-                        'Add new customer',
-                        'Remove customer',
-                        'Update customer',
-                        'get_oldest_person',
-                        'get_persons_closest_to_average']
+        list_options = ['Show list of employees',
+                        'Add new employee',
+                        'Remove employee',
+                        'Update employee',
+                        'Get oldest employee',
+                        'Get employee with age closest to average']
         # printing menu
-        ui.print_menu("Customer relation management", list_options, "Main menu press 0")
-        # Dick of available option to start equal function
-        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_oldest_person,
-                        "6": get_persons_closest_to_average, '0': exit}
-        # Start oprion
+        ui.print_menu("Human resources manager", list_options, "(0) Main menu")
+        # Dict of available option to start equal function
+        dic_function = {'1': show_table,
+                        '2': add,
+                        '3': remove,
+                        '4': update,
+                        '5': get_oldest_person,
+                        '6': get_persons_closest_to_average,
+                        '0': exit}
+        # Start option
         common.choose_by_dic(dic_function, table)
     # your code
 
@@ -55,9 +60,9 @@ def show_table(table):
         None
     """
 
-    # your code
-    title_list = ["ID", "Game Name", 'Birth Year']
-    ui.print_table(table, title_list)
+    title_list = ['ID', 'Name', 'Year of birth']
+    ui.print_table(table, ('ID', 'Name', 'Year of birth'))
+
 
 def add(table):
     """
@@ -70,7 +75,14 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    global file_name
+
+    employee_id = generate_random(table)
+    employee_name = input('Enter the new employee\'s full name: ')
+    employee_year = input('Enter the new employee\'s year of birth: ')
+    table.append([employee_id, employee_name, employee_year])
+
+    write_table_to_file(file_name, table)
 
     return table
 

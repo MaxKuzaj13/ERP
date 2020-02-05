@@ -47,7 +47,7 @@ def handle_menu():
                "Sales manager",
                "Customer Relationship Management (CRM)"]
 
-    ui.print_menu("Main menu", options, "Exit program")
+    ui.print_menu("Main menu", options, "(0) Exit program")
 
 
 def main():
