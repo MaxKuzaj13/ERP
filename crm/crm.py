@@ -31,7 +31,8 @@ def start_module():
 
     while True:
         # List of available option
-        list_options = ['Add new customer',
+        list_options = ['Show table',
+                        'Add new customer',
                         'Remove customer',
                         'Update customer',
                         'Show ID of customer with longest name',
@@ -54,7 +55,8 @@ def show_table(table):
     Returns:
         None
     """
-
+    title_list = ["ID", "Name", "Email", "Subscribed"]
+    ui.print_table(table, title_list)
     # your code
 
 

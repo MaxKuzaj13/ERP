@@ -58,8 +58,7 @@ def show_table(table):
         None
     """
     # your code
-    print('huj huj huj ')
-    title_list = ["ID", "Title", 'gffdsaaf', ',sdasa']
+    title_list = ["ID", "Game Name", 'Distributor', 'Data release', 'Available']
     ui.print_table(table, title_list)
 
 

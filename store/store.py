@@ -30,7 +30,8 @@ def start_module():
     """
     while True:
         # List of available option
-        list_options = ['Add new customer',
+        list_options = ['Show table',
+                        'Add new customer',
                         'Remove customer',
                         'Update customer',
                         'get_counts_by_manufacturers',
@@ -58,7 +59,8 @@ def show_table(table):
     """
 
     # your code
-
+    title_list = ["ID", 'Title', "Manufacturer", "Price,in_stock"]
+    ui.print_table(table, title_list)
 
 def add(table):
     """
@@ -87,10 +89,17 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
-
+    # id_ = ui.get_inputs('wprowadz', '')
     # your code
+    #id_index_of_row = 0
+    element_index_in_list = 0
+    for row in table:
+        if id_[element_index_in_list] in row:
+            table.remove(row)
 
-    return table
+
+    data_manager.write_table_to_file(file_name, table)
+    #return table
 
 
 def update(table, id_):

@@ -28,7 +28,8 @@ def start_module():
     """
     while True:
         # List of available option
-        list_options = ['Add new customer',
+        list_options = ['Show table',
+                        'Add new customer',
                         'Remove customer',
                         'Update customer',
                         'get_oldest_person',
@@ -55,7 +56,8 @@ def show_table(table):
     """
 
     # your code
-
+    title_list = ["ID", "Game Name", 'Birth Year']
+    ui.print_table(table, title_list)
 
 def add(table):
     """

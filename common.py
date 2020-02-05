@@ -43,7 +43,8 @@ def choose_by_dic(dic_function, table, *args):
         #hr.start_module()
     elif option == "3":
         print('tap 3')
-        dic_function["3"](table, id)
+        id_ = ui.get_inputs(["Which Id you want remove"],"")
+        dic_function["3"](table, id_)
         #inventory.start_module()
     elif option == "4":
         print('tap 1')
