@@ -17,6 +17,7 @@ import data_manager
 # common module
 import common
 import sys
+import os
 
 file_name = "inventory/inventory.csv"
 table = data_manager.get_table_from_file(file_name)
@@ -31,19 +32,19 @@ def start_module():
     Returns:
         None
     """
-    #table = data_manager.get_table_from_file(file_name)
+
 
     while True:
-
-        # your code
-        list_options = ["Show table", "Add", "Remove", "Update", "Get Available items"]
-
-        ui.print_menu("Inventory", list_options, "Back to main menu")
-        # tu sie zjebało
-        #ui.get_inputs(["Please enter what do you want: "], "")
-
-        dic_function = {'1': show_table, "2": add}
+        # List of available option
+        list_options = ["Show table", "Add", "Remove", "Update", "Get Available items", "Get average durability by manufacturers"]
+        # printing menu
+        ui.print_menu("Inventory", list_options, "Main menu press 0")
+        # Dick of available option to start equal function
+        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_available_items,
+                        "6":get_average_durability_by_manufacturers, '0': exit}
+        # Start oprion
         common.choose_by_dic(dic_function, table)
+
 
 
 def show_table(table):
@@ -75,7 +76,7 @@ def add(table):
     """
 
     # your code
-
+    print('huj')
     return table
 
 
@@ -92,7 +93,7 @@ def remove(table, id_):
     """
 
     # your code
-
+    print('huj')
     return table
 
 

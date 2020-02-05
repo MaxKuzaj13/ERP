@@ -138,7 +138,7 @@ def print_error_message(message):
     print("Error: ", message)
 
 #Test data
-<<<<<<< HEAD
+
 """
 titles=['ID', 'Name', 'Info']
 emp1=['gy5677fdsfbmsbadjhsagdjasdg76', "Anna Nowak", "x"]
@@ -148,7 +148,7 @@ emp4=['g1123', "Basia Bobu", "dupa"]
 employees=[emp1, emp2, emp3, emp4]
 print_table(employees,titles)
 """
-=======
+
 
 # titles=['ID', 'Name', 'Info']
 # emp1=['gy5677fdsfbmsbadjhsagdjasdg76', "Anna Nowak", "x"]
@@ -157,4 +157,4 @@ print_table(employees,titles)
 # emp4=['g1123', "Basia Bobu", "dupa"]
 # employees=[emp1, emp2, emp3, emp4]
 # print_table(employees,titles)
->>>>>>> 09e0a0f6aa7a8b2e5126260e83d3022d34938535
+
