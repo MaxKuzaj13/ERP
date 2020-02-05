@@ -3,12 +3,9 @@ implement commonly used functions here
 """
 
 import random
-<<<<<<< HEAD
 import string
-=======
 import ui
 import main
->>>>>>> 969145b9c59f77415158a9acf78c9613cf491331
 
 
 def generate_random(table):
