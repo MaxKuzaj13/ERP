@@ -3,6 +3,7 @@ implement commonly used functions here
 """
 
 import random
+import string
 
 
 def generate_random(table):
@@ -17,9 +18,12 @@ def generate_random(table):
     Returns:
         string: Random and unique string
     """
-
     generated = ''
 
-    # your code
+    Lletters = string.ascii_lowercase
+    Uletters = string.ascii_uppercase
+    Specials = ["#", "$", "%", "&", "?", "@"]
+    Numbers = string.digits
+    generated = random.choice(Lletters) + random.choice(Uletters) + random.choice(Numbers) + random.choice(Numbers) + random.choice(Uletters)+ random.choice(Lletters) + random.choice(Specials) + random.choice(Specials)
 
     return generated

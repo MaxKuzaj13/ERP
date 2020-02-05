@@ -18,6 +18,12 @@ import data_manager
 # common module
 import common
 
+file_name = "sales/sales.csv"
+table = data_manager.get_table_from_file(file_name)
+title_list = "ID", "Title", "Price", "Month", "Day", "Year"
+list_labels = "ID: ", "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
+
+
 
 def start_module():
     """
@@ -28,7 +34,6 @@ def start_module():
     Returns:
         None
     """
-    file_name = "sales/sales.csv"
     list_options = ["Show table",
                "Add",
                "Remove",
@@ -38,12 +43,13 @@ def start_module():
     
     #options = list_options    
     ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
-    ui.inputs = ui.get_inputs(["Please enter a number: "], "")
-    option = ui.inputs[0]
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
     if option == "1":
-        show_table(data_manager.get_table_from_file(file_name))    
-    # elif option == "2":
-    #     hr.start_module()
+        show_table(table)    
+    elif option == "2":
+        add(table)
+        
 def show_table(table):
     """
     Display a table
@@ -68,9 +74,19 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
-    # your code
-
+    
+    list_labels = "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
+    id_record = common.generate_random(table)
+    new_rec = ui.get_inputs(list_labels, "")
+    new_record = []
+    new_record.append(id_record)
+    for row in new_rec:
+        new_record.append(row)
+    #new_record = [id_record, new_rec]
+    table.append(new_record)
+    print(table)
+    file_name = "sales/sales_test.csv"
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 
