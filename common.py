@@ -3,7 +3,12 @@ implement commonly used functions here
 """
 
 import random
+<<<<<<< HEAD
 import string
+=======
+import ui
+import main
+>>>>>>> 969145b9c59f77415158a9acf78c9613cf491331
 
 
 def generate_random(table):
@@ -27,3 +32,35 @@ def generate_random(table):
     generated = random.choice(Lletters) + random.choice(Uletters) + random.choice(Numbers) + random.choice(Numbers) + random.choice(Uletters)+ random.choice(Lletters) + random.choice(Specials) + random.choice(Specials)
 
     return generated
+
+def choose_by_dic(dic_function, table, *args):
+    inputs = ui.get_inputs(["chouse option: "], " ")
+    option = inputs[0]
+    exit_code = 0
+    if option == "1":
+        dic_function["1"](table)
+        print('tap 1')
+    elif option == "2":
+        dic_function["2"](table)
+        print('tap 2')
+        #hr.start_module()
+    elif option == "3":
+        print('tap 3')
+        dic_function["3"](table, id)
+        #inventory.start_module()
+    elif option == "4":
+        print('tap 1')
+        #accounting.start_module()
+    elif option == "5":
+        print('tap 1')
+        #sales.start_module()
+    elif option == "6":
+        print('tap 1')
+        #crm.start_module()
+    elif option == "0":
+        main.main()
+        #sys.exit(0)
+    else:
+        raise KeyError("There is no such option.")
+
+    return exit_code

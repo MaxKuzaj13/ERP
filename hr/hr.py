@@ -14,7 +14,8 @@ import ui
 import data_manager
 # common module
 import common
-
+file_name = "hr/persons.csv"
+table = data_manager.get_table_from_file(file_name)
 
 def start_module():
     """
@@ -25,7 +26,20 @@ def start_module():
     Returns:
         None
     """
-
+    while True:
+        # List of available option
+        list_options = ['Add new customer',
+                        'Remove customer',
+                        'Update customer',
+                        'get_oldest_person',
+                        'get_persons_closest_to_average']
+        # printing menu
+        ui.print_menu("Customer relation management", list_options, "Main menu press 0")
+        # Dick of available option to start equal function
+        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_oldest_person,
+                        "6": get_persons_closest_to_average, '0': exit}
+        # Start oprion
+        common.choose_by_dic(dic_function, table)
     # your code
 
 

@@ -18,6 +18,9 @@ import data_manager
 # common module
 import common
 
+file_name = "accounting/items.csv"
+table = data_manager.get_table_from_file(file_name)
+
 
 def start_module():
     """
@@ -28,8 +31,17 @@ def start_module():
     Returns:
         None
     """
-
     # you code
+    while True:
+        # List of available option
+        list_options = ["Show table", "Add", "Remove", "Update", "The biggest sell in this year", "Average amount"]
+        # printing menu
+        ui.print_menu("Accounting", list_options, "Main menu press 0")
+        # Dick of available option to start equal function
+        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": which_year_max,
+                        "6": avg_amount, '0': exit}
+        # Start oprion
+        common.choose_by_dic(dic_function, table)
 
 
 def show_table(table):

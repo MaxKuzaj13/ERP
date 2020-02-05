@@ -15,7 +15,8 @@ import ui
 import data_manager
 # common module
 import common
-
+file_name = "crm/customers.csv"
+table = data_manager.get_table_from_file(file_name)
 
 def start_module():
     """
@@ -27,8 +28,21 @@ def start_module():
         None
     """
 
-    # your code
 
+    while True:
+        # List of available option
+        list_options = ['Add new customer',
+                        'Remove customer',
+                        'Update customer',
+                        'Show ID of customer with longest name',
+                        'Show customers which has subscripted the newsletter']
+        # printing menu
+        ui.print_menu("Customer relation management", list_options, "Main menu press 0")
+        # Dick of available option to start equal function
+        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_longest_name_id,
+                        "6": get_subscribed_emails, '0': exit}
+        # Start oprion
+        common.choose_by_dic(dic_function, table)
 
 def show_table(table):
     """
