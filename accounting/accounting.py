@@ -55,8 +55,10 @@ def show_table(table):
         None
     """
 
-    # your code
 
+    # your code
+    title_list = ["ID", "Month", "Day", 'Year', "Type", "Amount"]
+    ui.print_table(table, title_list)
 
 def add(table):
     """

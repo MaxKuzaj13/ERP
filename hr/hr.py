@@ -60,6 +60,7 @@ def show_table(table):
         None
     """
 
+    title_list = ['ID', 'Name', 'Year of birth']
     ui.print_table(table, ('ID', 'Name', 'Year of birth'))
 
 
