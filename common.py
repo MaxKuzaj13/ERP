@@ -31,7 +31,7 @@ def generate_random(table):
     return generated
 
 def choose_by_dic(dic_function, table, *args):
-    inputs = ui.get_inputs(["chouse option: "], " ")
+    inputs = ui.get_inputs(["Choice option: "], " ")
     option = inputs[0]
     exit_code = 0
     if option == "1":
@@ -62,3 +62,21 @@ def choose_by_dic(dic_function, table, *args):
         raise KeyError("There is no such option.")
 
     return exit_code
+
+
+def add_universal(table, title_list):
+    new_record = []
+    add_index_start_for_name_rows = 1
+    list_labels = title_list[add_index_start_for_name_rows:]
+    id_record = generate_random(table)
+    inputs_list = ui.get_inputs(list_labels, "")
+    # Add input to list with nessery attributes
+    # Add new ID - random
+    new_record.append(id_record)
+    # Iteration by rows
+    for row in inputs_list:
+        new_record.append(row)
+    # Append new row to the table.
+    table.append(new_record)
+
+    return table

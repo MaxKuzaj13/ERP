@@ -21,7 +21,7 @@ import os
 
 file_name = "inventory/inventory.csv"
 table = data_manager.get_table_from_file(file_name)
-
+title_list = ["ID", "Game Name", 'Distributor', 'Data release', 'Available']
 
 def start_module():
     """
@@ -58,7 +58,7 @@ def show_table(table):
         None
     """
     # your code
-    title_list = ["ID", "Game Name", 'Distributor', 'Data release', 'Available']
+
     ui.print_table(table, title_list)
 
 
@@ -75,7 +75,11 @@ def add(table):
     """
 
     # your code
-    print('huj')
+    # Universal add tool in common
+    table = common.add_universal(table, title_list)
+
+    # Save to file
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 
