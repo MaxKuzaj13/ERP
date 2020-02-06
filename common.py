@@ -81,5 +81,14 @@ def add_universal(table, title_list):
 
     return table
 
+
+def remove_universal(table, id_):
+    element_index_in_list = 0
+    for row in table:
+        if id_[element_index_in_list] in row:
+            table.remove(row)
+
+    return table
+
 def ID_error():
     ui.print_result("ID Error: ", "The ID doesn't exist.")

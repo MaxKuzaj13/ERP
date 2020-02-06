@@ -97,11 +97,13 @@ def remove(table, id_):
     # id_ = ui.get_inputs('wprowadz', '')
     # your code
     #id_index_of_row = 0
+    '''
     element_index_in_list = 0
     for row in table:
         if id_[element_index_in_list] in row:
             table.remove(row)
-
+    '''
+    common.remove_universal(table, id_)
 
     data_manager.write_table_to_file(file_name, table)
     #return table

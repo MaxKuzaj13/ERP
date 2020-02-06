@@ -160,7 +160,7 @@ def get_oldest_person(table):
         list: A list of strings (name or names if there are two more with the same value)
     """
 
-    for row in table:
+    #for row in table:
 
 
 def get_persons_closest_to_average(table):
