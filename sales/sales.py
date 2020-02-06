@@ -23,8 +23,6 @@ table = data_manager.get_table_from_file(file_name)
 title_list = "ID", "Title", "Price", "Month", "Day", "Year"
 list_labels = "ID: ", "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
 
-
-
 def start_module():
     """
     Starts this module and displays its menu.
@@ -49,6 +47,10 @@ def start_module():
         show_table(table)    
     elif option == "2":
         add(table)
+    elif option == "3":
+        id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+
+        remove(table, id_)
         
 def show_table(table):
     """
@@ -84,8 +86,7 @@ def add(table):
         new_record.append(row)
     #new_record = [id_record, new_rec]
     table.append(new_record)
-    print(table)
-    file_name = "sales/sales_test.csv"
+    file_name = "sales/dupa.csv"
     data_manager.write_table_to_file(file_name, table)
     return table
 
@@ -101,8 +102,17 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
+    for row in table:
+        if id_[0] in row:
+            table.remove(row)
+    data_manager.write_table_to_file("dupa.csv", table)
 
-    # your code
+    return table
+
+
+        
+
+    
 
     return table
 
