@@ -115,7 +115,8 @@ def update(table, id_):
     """
 
     # your code
-
+    common.update_universal(table, id_, title_list)
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 

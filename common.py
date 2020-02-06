@@ -95,3 +95,27 @@ def remove_universal(table, id_):
 
 def ID_error():
     ui.print_result("ID Error: ", "The ID doesn't exist.")
+
+
+def update_universal(table, id_, title_list):
+    element_index_id = 0
+    element_index_start_without_id = 1
+    labels = title_list[element_index_start_without_id:]
+    updated_row = []
+    temp_list = []
+    counter = 0
+    ifWrong = True
+    for row in table:
+        if row[element_index_id] == id_[element_index_id]:
+            ifWrong = False
+            updated_row.append(id_[element_index_id])
+            temp_list = ui.get_inputs(labels, "Please put new data:")
+            for rec in temp_list:
+                updated_row.append(rec)
+            table[counter] = updated_row
+        counter += 1
+
+        if ifWrong == True:
+            ui.print_error_message("Id doesn't exist")
+
+        return table
