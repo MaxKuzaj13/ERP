@@ -19,6 +19,11 @@ import common
 file_name = "store/games.csv"
 table = data_manager.get_table_from_file(file_name)
 title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
+ID_NUMBER = 0
+TITLE_NUMBER = 1
+MANUFACTURER_NUMBER = 2
+PRICE_NUMBER = 3
+IN_STOCK_NUMBER = 4
 
 def start_module():
     """
@@ -149,12 +154,23 @@ def get_counts_by_manufacturers(table):
          dict: A dictionary with this structure: { [manufacturer] : [count] }
     """
 
-    counts_by_manufacturers = {}
+    manufacturers = set(row[MANUFACTURER_NUMBER] for row in table)
 
+    counts_by_manufacturers = {m:0 for m in manufacturers}
+
+    for m in manufacturers:
+        for row in table:
+            if row[MANUFACTURER_NUMBER] == m:
+                counts_by_manufacturers[m] += 1
+    
+    # Delete this after you fix the print_result() to also print dictionaries:
+    counts_by_manufacturers = [(k,v) for k, v in counts_by_manufacturers.items()]
+
+    ui.print_result(counts_by_manufacturers, 'Number of games for each manufacturer')
     return counts_by_manufacturers
 
 
-def get_average_by_manufacturer(table, manufacturer):
+def get_average_by_manufacturer(table):
     """
     Question: What is the average amount of games in stock of a given manufacturer?
 
@@ -163,7 +179,25 @@ def get_average_by_manufacturer(table, manufacturer):
         manufacturer (str): Name of manufacturer
 
     Returns:
-         number
+        number
     """
 
-    # your code
+    manufacturers = set(row[MANUFACTURER_NUMBER] for row in table)
+
+    the_manufacturer = ui.get_inputs(['Enter the manufacturer: '], '')[0]
+
+    print(the_manufacturer)
+
+    average_by_manufacturer = 0
+    game_count = 0
+
+    for row in table:
+        if row[MANUFACTURER_NUMBER] == the_manufacturer:
+            average_by_manufacturer += int(row[IN_STOCK_NUMBER])
+            game_count += 1
+
+    try:
+        average_by_manufacturer /= game_count
+        ui.print_result(average_by_manufacturer, f'Average size of {the_manufacturer}\'s game stock is')
+    except ZeroDivisionError:
+        common.ID_error()
