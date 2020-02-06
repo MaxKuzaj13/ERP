@@ -32,28 +32,29 @@ def start_module():
     Returns:
         None
     """
-    list_options = ["Show table",
-               "Add",
-               "Remove",
-               "Update",
-               "Get lowest price item",
-               "Get items sold between"]
-    
-    #options = list_options    
-    ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
-    inputs = ui.get_inputs(["Please enter a number: "], "")
-    option = inputs[0]
-    if option == "1":
-        show_table(table)    
-    elif option == "2":
-        add(table)
-    elif option == "3":
-        id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+    while True:
+        list_options = ["Show table",
+                   "Add",
+                   "Remove",
+                   "Update",
+                   "Get lowest price item",
+                   "Get items sold between"]
 
-        remove(table, id_)
-    elif option == "4":
-        id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
-        update(table,id_)
+        #options = list_options
+        ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
+        inputs = ui.get_inputs(["Please enter a number: "], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+
+            remove(table, id_)
+        elif option == "4":
+            id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+            update(table,id_)
         
 def show_table(table):
     """
@@ -108,18 +109,10 @@ def remove(table, id_):
     for row in table:
         if id_[0] in row:
             table.remove(row)
-<<<<<<< HEAD
-    data_manager.write_table_to_file("dupa.csv", table)
-
-    return table
-
-
-=======
     data_manager.write_table_to_file(file_name, table)
 
     return table
 
->>>>>>> 8b9ee5820d3b2dd16e37f7124e9f2e38714357d2
 
 def update(table, id_):
     """
