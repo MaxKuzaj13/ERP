@@ -96,7 +96,7 @@ def remove(table, id_):
     """
 
     # your code
-    print('huj')
+
     return table
 
 
