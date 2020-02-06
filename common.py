@@ -48,12 +48,16 @@ def choose_by_dic(dic_function, table, *args):
         #inventory.start_module()
     elif option == "4":
         print('tap 4')
+        id_ = ui.get_inputs(["Which ID do you want to update? "],"")
+        dic_function["4"](table, id_)
         #accounting.start_module()
     elif option == "5":
         print('tap 5')
+        dic_function["5"](table)
         #sales.start_module()
     elif option == "6":
         print('tap 6')
+        dic_function["6"](table)
         #crm.start_module()
     elif option == "0":
         main.main()
@@ -89,12 +93,14 @@ def remove_universal(table, id_):
         # use element  ID to check it is in list if it is remove this row
         if id_[element_index_in_list] in row:
             table.remove(row)
+        else:
+            ID_error()
 
     return table
 
 
 def ID_error():
-    ui.print_result("ID Error: ", "The ID doesn't exist.")
+    ui.print_error_message("The ID doesn't exist.")
 
 
 def update_universal(table, id_, title_list):
