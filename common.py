@@ -104,24 +104,34 @@ def ID_error():
 
 
 def update_universal(table, id_, title_list):
+    # temp index name
     element_index_id = 0
     element_index_start_without_id = 1
+
+    # CUTING FRAGMENT OF LIST STARTED AFTER ID
     labels = title_list[element_index_start_without_id:]
+
+    # tempelary lists and values
     updated_row = []
     temp_list = []
     counter = 0
     ifWrong = True
+
+    # Main loop
     for row in table:
+        # checking is a our ID
         if row[element_index_id] == id_[element_index_id]:
+            # if not this loop stat error
             ifWrong = False
             updated_row.append(id_[element_index_id])
             temp_list = ui.get_inputs(labels, "Please put new data:")
+            # Checking module
             for rec in temp_list:
                 updated_row.append(rec)
             table[counter] = updated_row
         counter += 1
+    # Error mesage
+    if ifWrong == True:
+        ui.print_error_message("Id doesn't exist")
 
-        if ifWrong == True:
-            ui.print_error_message("Id doesn't exist")
-
-        return table
+    return table

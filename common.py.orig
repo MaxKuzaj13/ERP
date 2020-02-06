@@ -31,11 +31,7 @@ def generate_random(table):
     return generated
 
 def choose_by_dic(dic_function, table, *args):
-<<<<<<< HEAD
-    inputs = ui.get_inputs(["Choice option: "], " ")
-=======
     inputs = ui.get_inputs(["Choose option: "], " ")
->>>>>>> cdf2f17051a5b1a3c90d6a531fd4e91512be3669
     option = inputs[0]
     exit_code = 0
     if option == "1":
@@ -47,17 +43,21 @@ def choose_by_dic(dic_function, table, *args):
         #hr.start_module()
     elif option == "3":
         print('tap 3')
-        id_ = ui.get_inputs(["Which Id you want remove"],"")
+        id_ = ui.get_inputs(["Which ID do you want to remove? "],"")
         dic_function["3"](table, id_)
         #inventory.start_module()
     elif option == "4":
-        print('tap 1')
+        print('tap 4')
+        id_ = ui.get_inputs(["Which ID do you want to update? "],"")
+        dic_function["4"](table, id_)
         #accounting.start_module()
     elif option == "5":
-        print('tap 1')
+        print('tap 5')
+        dic_function["5"](table)
         #sales.start_module()
     elif option == "6":
-        print('tap 1')
+        print('tap 6')
+        dic_function["6"](table)
         #crm.start_module()
     elif option == "0":
         main.main()
@@ -84,3 +84,48 @@ def add_universal(table, title_list):
     table.append(new_record)
 
     return table
+
+
+def remove_universal(table, id_):
+    # chuse elemets ID from list
+    element_index_in_list = 0
+    for row in table:
+        # use element  ID to check it is in list if it is remove this row
+        if id_[element_index_in_list] in row:
+            table.remove(row)
+        else:
+            ID_error()
+
+    return table
+
+
+def ID_error():
+<<<<<<< HEAD
+    ui.print_result("ID Error: ", "The ID doesn't exist.")
+
+
+def update_universal(table, id_, title_list):
+    element_index_id = 0
+    element_index_start_without_id = 1
+    labels = title_list[element_index_start_without_id:]
+    updated_row = []
+    temp_list = []
+    counter = 0
+    ifWrong = True
+    for row in table:
+        if row[element_index_id] == id_[element_index_id]:
+            ifWrong = False
+            updated_row.append(id_[element_index_id])
+            temp_list = ui.get_inputs(labels, "Please put new data:")
+            for rec in temp_list:
+                updated_row.append(rec)
+            table[counter] = updated_row
+        counter += 1
+
+        if ifWrong == True:
+            ui.print_error_message("Id doesn't exist")
+
+        return table
+=======
+    ui.print_error_message("The ID doesn't exist.")
+>>>>>>> 6bfa3a45776748ee9f343596575b50ccd9c93806
