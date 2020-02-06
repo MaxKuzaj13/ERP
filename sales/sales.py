@@ -18,6 +18,7 @@ import data_manager
 # common module
 import common
 
+
 file_name = "sales/sales.csv"
 table = data_manager.get_table_from_file(file_name)
 title_list = "ID", "Title", "Price", "Month", "Day", "Year"
@@ -50,12 +51,12 @@ def start_module():
             add(table)
         elif option == "3":
             id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
-
             remove(table, id_)
         elif option == "4":
             id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
             update(table,id_)
-        
+        elif option == "5":
+            get_lowest_price_item_id(table)
 def show_table(table):
     """
     Display a table
@@ -164,9 +165,18 @@ def get_lowest_price_item_id(table):
     Returns:
          string: id
     """
-
+    price = 2
+    id_price = 0
+    name_game = 1
     # your code
-
+    min_price = 100
+    for row in table:
+        if min_price > int(row[price]):
+            min_price = int(row[price])
+    for row in table:
+        if int(row[price]) == min_price:
+            print("\n\tID of cheapest game is: ",row[id_price],  " Name of this game is:", row[name_game], "\n ")
+        
 
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
     """
