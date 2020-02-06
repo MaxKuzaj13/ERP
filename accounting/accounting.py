@@ -20,6 +20,7 @@ import common
 
 file_name = "accounting/items.csv"
 table = data_manager.get_table_from_file(file_name)
+title_list = ["ID", "Month", "Day", 'Year', "Type", "Amount"]
 
 
 def start_module():
@@ -55,8 +56,10 @@ def show_table(table):
         None
     """
 
-    # your code
 
+    # your code
+    #title_list = ["ID", "Month", "Day", 'Year', "Type", "Amount"]
+    ui.print_table(table, title_list)
 
 def add(table):
     """
@@ -70,7 +73,11 @@ def add(table):
     """
 
     # your code
+    # Universal add tool in common
+    table = common.add_universal(table, title_list)
 
+    # Save to file
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 

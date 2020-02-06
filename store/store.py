@@ -18,6 +18,7 @@ import data_manager
 import common
 file_name = "store/games.csv"
 table = data_manager.get_table_from_file(file_name)
+title_list = ["ID", 'Title', "Manufacturer", "Price,in_stock"]
 
 def start_module():
     """
@@ -30,13 +31,14 @@ def start_module():
     """
     while True:
         # List of available option
-        list_options = ['Add new customer',
+        list_options = ['Show table',
+                        'Add new customer',
                         'Remove customer',
                         'Update customer',
                         'get_counts_by_manufacturers',
                         'get_average_by_manufacturer']
         # printing menu
-        ui.print_menu("Customer relation management", list_options, "Main menu press 0")
+        ui.print_menu("Store", list_options, "Main menu press 0")
         # Dick of available option to start equal function
         dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_counts_by_manufacturers,
                         "6": get_average_by_manufacturer, '0': exit}
@@ -59,6 +61,7 @@ def show_table(table):
 
     # your code
 
+    ui.print_table(table, title_list)
 
 def add(table):
     """
@@ -72,7 +75,11 @@ def add(table):
     """
 
     # your code
+    # Universal add tool in common
+    table = common.add_universal(table, title_list)
 
+    # Save to file
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 
@@ -87,10 +94,19 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
-
+    # id_ = ui.get_inputs('wprowadz', '')
     # your code
+    #id_index_of_row = 0
+    '''
+    element_index_in_list = 0
+    for row in table:
+        if id_[element_index_in_list] in row:
+            table.remove(row)
+    '''
+    common.remove_universal(table, id_)
 
-    return table
+    data_manager.write_table_to_file(file_name, table)
+    #return table
 
 
 def update(table, id_):

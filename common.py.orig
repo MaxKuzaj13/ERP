@@ -31,7 +31,11 @@ def generate_random(table):
     return generated
 
 def choose_by_dic(dic_function, table, *args):
+<<<<<<< HEAD
+    inputs = ui.get_inputs(["Choice option: "], " ")
+=======
     inputs = ui.get_inputs(["Choose option: "], " ")
+>>>>>>> cdf2f17051a5b1a3c90d6a531fd4e91512be3669
     option = inputs[0]
     exit_code = 0
     if option == "1":
@@ -43,17 +47,17 @@ def choose_by_dic(dic_function, table, *args):
         #hr.start_module()
     elif option == "3":
         print('tap 3')
-        id_ = ui.get_inputs(["Which ID do you want to remove? "],"")
+        id_ = ui.get_inputs(["Which Id you want remove"],"")
         dic_function["3"](table, id_)
         #inventory.start_module()
     elif option == "4":
-        print('tap 4')
+        print('tap 1')
         #accounting.start_module()
     elif option == "5":
-        print('tap 5')
+        print('tap 1')
         #sales.start_module()
     elif option == "6":
-        print('tap 6')
+        print('tap 1')
         #crm.start_module()
     elif option == "0":
         main.main()
@@ -80,15 +84,3 @@ def add_universal(table, title_list):
     table.append(new_record)
 
     return table
-
-
-def remove_universal(table, id_):
-    element_index_in_list = 0
-    for row in table:
-        if id_[element_index_in_list] in row:
-            table.remove(row)
-
-    return table
-
-def ID_error():
-    ui.print_result("ID Error: ", "The ID doesn't exist.")
