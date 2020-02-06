@@ -16,6 +16,7 @@ import data_manager
 import common
 file_name = "hr/persons.csv"
 table = data_manager.get_table_from_file(file_name)
+title_list = ['ID', 'Name', 'Year of birth']
 
 def start_module():
     """
@@ -60,7 +61,7 @@ def show_table(table):
         None
     """
 
-    title_list = ['ID', 'Name', 'Year of birth']
+
     ui.print_table(table, ('ID', 'Name', 'Year of birth'))
 
 
@@ -75,14 +76,11 @@ def add(table):
         list: Table with a new record
     """
 
-    global file_name
+    # Universal add tool in common
+    table = common.add_universal(table, title_list)
 
-    employee_id = generate_random(table)
-    employee_name = input('Enter the new employee\'s full name: ')
-    employee_year = input('Enter the new employee\'s year of birth: ')
-    table.append([employee_id, employee_name, employee_year])
-
-    write_table_to_file(file_name, table)
+    # Save to file
+    data_manager.write_table_to_file(file_name, table)
 
     return table
 

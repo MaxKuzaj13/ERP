@@ -17,6 +17,7 @@ import data_manager
 import common
 file_name = "crm/customers.csv"
 table = data_manager.get_table_from_file(file_name)
+title_list = ["ID", "Name", "Email", "Subscribed"]
 
 def start_module():
     """
@@ -55,7 +56,7 @@ def show_table(table):
     Returns:
         None
     """
-    title_list = ["ID", "Name", "Email", "Subscribed"]
+    #title_list = ["ID", "Name", "Email", "Subscribed"]
     ui.print_table(table, title_list)
     # your code
 
@@ -72,7 +73,11 @@ def add(table):
     """
 
     # your code
+    # Universal add tool in common
+    table = common.add_universal(table, title_list)
 
+    # Save to file
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 
