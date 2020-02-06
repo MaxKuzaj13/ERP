@@ -105,14 +105,7 @@ def remove(table, id_):
     for row in table:
         if id_[0] in row:
             table.remove(row)
-    data_manager.write_table_to_file("dupa.csv", table)
-
-    return table
-
-
-        
-
-    
+    data_manager.write_table_to_file(file_name, table)
 
     return table
 
