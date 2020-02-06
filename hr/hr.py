@@ -16,8 +16,11 @@ import data_manager
 import common
 file_name = "hr/persons.csv"
 table = data_manager.get_table_from_file(file_name)
-title_list = ['ID', 'Name', 'Year of birth']
 
+TITLE_LIST = ['ID', 'Name ', 'Year of birth ']
+ID_NUMBER = 0
+NAME_NUMBER = 1
+YEAR_NUMBER = 2
 
 def start_module():
     """
@@ -37,7 +40,7 @@ def start_module():
                         'Get oldest employee',
                         'Get employee with age closest to average']
         # printing menu
-        ui.print_menu("Human resources manager", list_options, "Main menu press 0")
+        ui.print_menu("Human resources manager", list_options, "(0) Main menu")
         # Dict of available option to start equal function
         dic_function = {'1': show_table,
                         '2': add,
@@ -62,8 +65,7 @@ def show_table(table):
         None
     """
 
-
-    ui.print_table(table, title_list)
+    ui.print_table(table, TITLE_LIST)
 
 
 def add(table):
@@ -78,7 +80,7 @@ def add(table):
     """
 
     # Universal add tool in common
-    table = common.add_universal(table, title_list)
+    table = common.add_universal(table, TITLE_LIST)
 
     # Save to file
     data_manager.write_table_to_file(file_name, table)
@@ -130,15 +132,6 @@ def update(table, id_):
 
     return table
 
-#    """
-#    Displays results of the special functions.
-
-#    Args:
-#        result: result of the special function (string, number, list or dict)
-#        label (str): label of the result"""
-
-# special functions:
-# ------------------
 
 def get_oldest_person(table):
     """
@@ -151,7 +144,29 @@ def get_oldest_person(table):
         list: A list of strings (name or names if there are two more with the same value)
     """
 
-    #for row in table:
+    iterations = 1
+    n = len(table)
+    
+    while iterations < n:
+        j = 0
+        while j <= n-2:
+            if table[j][YEAR_NUMBER] > table[j+1][YEAR_NUMBER]:
+                temp = table[j+1]
+                table[j+1] = table[j]
+                table[j] = temp
+                j += 1
+            else:
+                j += 1
+        else:
+            iterations += 1
+    
+    oldest_people = [table[0][NAME_NUMBER]]
+    
+    for row in table:
+        if row[YEAR_NUMBER] == table[0][YEAR_NUMBER]:
+            oldest_people.append(row[NAME_NUMBER])
+
+    ui.print_result(oldest_people, 'The oldest person(s) is: ')
 
 
 def get_persons_closest_to_average(table):
