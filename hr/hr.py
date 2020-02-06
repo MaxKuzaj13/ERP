@@ -77,12 +77,13 @@ def add(table):
 
     global file_name
 
-    employee_id = generate_random(table)
-    employee_name = input('Enter the new employee\'s full name: ')
-    employee_year = input('Enter the new employee\'s year of birth: ')
+    inputs = ui.get_inputs(['Full name', 'Year of birth'], 'Enter the details...')
+    employee_id = common.generate_random(table)
+    employee_name = inputs[0]
+    employee_year = inputs[1]
     table.append([employee_id, employee_name, employee_year])
 
-    write_table_to_file(file_name, table)
+    data_manager.write_table_to_file(file_name, table)
 
     return table
 
@@ -99,7 +100,15 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    element_index_in_list = 0
+    for row in table:
+        if id_[element_index_in_list] in row:
+            print(f'Employee {row[1]} removed.')
+            table.remove(row)
+        else:
+            common.ID_error()
+
+    data_manager.write_table_to_file(file_name, table)
 
     return table
 
@@ -115,11 +124,26 @@ def update(table, id_):
     Returns:
         list: table with updated record
     """
+    
+    element_index_in_list = 0
+    for row in table:
+        if id_[element_index_in_list] in row:
+            inputs = ui.get_inputs(['Full name', 'Year of birth'], 'Enter the details...')
+            row[1] = inputs[0]
+            row[2] = inputs[1]
+        else:
+            common.ID_error()
 
-    # your code
+    data_manager.write_table_to_file(file_name, table)
 
     return table
 
+#    """
+#    Displays results of the special functions.
+
+#    Args:
+#        result: result of the special function (string, number, list or dict)
+#        label (str): label of the result"""
 
 # special functions:
 # ------------------
@@ -135,7 +159,7 @@ def get_oldest_person(table):
         list: A list of strings (name or names if there are two more with the same value)
     """
 
-    # your code
+    for row in table:
 
 
 def get_persons_closest_to_average(table):
