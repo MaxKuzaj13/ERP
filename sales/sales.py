@@ -108,11 +108,18 @@ def remove(table, id_):
     for row in table:
         if id_[0] in row:
             table.remove(row)
+<<<<<<< HEAD
     data_manager.write_table_to_file("dupa.csv", table)
 
     return table
 
 
+=======
+    data_manager.write_table_to_file(file_name, table)
+
+    return table
+
+>>>>>>> 8b9ee5820d3b2dd16e37f7124e9f2e38714357d2
 
 def update(table, id_):
     """

@@ -94,7 +94,9 @@ def remove(table, id_):
     """
 
     # your code
+    common.remove_universal(table, id_)
 
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 

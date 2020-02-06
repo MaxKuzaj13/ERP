@@ -18,6 +18,7 @@ file_name = "hr/persons.csv"
 table = data_manager.get_table_from_file(file_name)
 title_list = ['ID', 'Name', 'Year of birth']
 
+
 def start_module():
     """
     Starts this module and displays its menu.
@@ -36,7 +37,7 @@ def start_module():
                         'Get oldest employee',
                         'Get employee with age closest to average']
         # printing menu
-        ui.print_menu("Human resources manager", list_options, "(0) Main menu")
+        ui.print_menu("Human resources manager", list_options, "Main menu press 0")
         # Dict of available option to start equal function
         dic_function = {'1': show_table,
                         '2': add,
@@ -62,7 +63,7 @@ def show_table(table):
     """
 
 
-    ui.print_table(table, ('ID', 'Name', 'Year of birth'))
+    ui.print_table(table, title_list)
 
 
 def add(table):
@@ -78,12 +79,8 @@ def add(table):
 
     # Universal add tool in common
     table = common.add_universal(table, title_list)
-    employee_id = generate_random(table)
-    employee_name = input('Enter the new employee\'s full name: ')
-    employee_year = input('Enter the new employee\'s year of birth: ')
-    employee_year = inputs[1]
 
-    write_table_to_file(file_name, table)
+    # Save to file
     data_manager.write_table_to_file(file_name, table)
 
     return table
@@ -101,13 +98,7 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    element_index_in_list = 0
-    for row in table:
-        if id_[element_index_in_list] in row:
-            print(f'Employee {row[1]} removed.')
-            table.remove(row)
-        else:
-            common.ID_error()
+    common.remove_universal(table, id_)
 
     data_manager.write_table_to_file(file_name, table)
 

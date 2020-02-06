@@ -90,5 +90,6 @@ def remove_universal(table, id_):
 
     return table
 
+
 def ID_error():
     ui.print_result("ID Error: ", "The ID doesn't exist.")
