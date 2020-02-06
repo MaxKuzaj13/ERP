@@ -18,7 +18,7 @@ import data_manager
 import common
 file_name = "store/games.csv"
 table = data_manager.get_table_from_file(file_name)
-title_list = ["ID", 'Title', "Manufacturer", "Price,in_stock"]
+title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
 
 def start_module():
     """
@@ -35,13 +35,19 @@ def start_module():
                         'Add new customer',
                         'Remove customer',
                         'Update customer',
-                        'get_counts_by_manufacturers',
-                        'get_average_by_manufacturer']
+                        'Get number of games for each manufacturer',
+                        'Get average size of game stock for each manufacturer']
         # printing menu
         ui.print_menu("Store", list_options, "Main menu press 0")
         # Dick of available option to start equal function
-        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_counts_by_manufacturers,
-                        "6": get_average_by_manufacturer, '0': exit}
+        dic_function = {'1': show_table,
+                        "2": add,
+                        "3": remove,
+                        "4": update,
+                        "5": get_counts_by_manufacturers,
+                        "6": get_average_by_manufacturer,
+                        '0': exit
+                        }
         # Start oprion
         common.choose_by_dic(dic_function, table)
 
@@ -134,7 +140,7 @@ def update(table, id_):
 
 def get_counts_by_manufacturers(table):
     """
-    Question: How many different kinds of game are available of each manufacturer?
+    Question: How many different kinds of game are available for each manufacturer?
 
     Args:
         table (list): data table to work on
@@ -143,7 +149,9 @@ def get_counts_by_manufacturers(table):
          dict: A dictionary with this structure: { [manufacturer] : [count] }
     """
 
-    # your code
+    counts_by_manufacturers = {}
+
+    return counts_by_manufacturers
 
 
 def get_average_by_manufacturer(table, manufacturer):
