@@ -144,6 +144,53 @@ def get_oldest_person(table):
         list: A list of strings (name or names if there are two more with the same value)
     """
 
+    table = sort_by_year(table)
+    
+    oldest_people = []
+    
+    for row in table:
+        if row[YEAR_NUMBER] == table[0][YEAR_NUMBER]:
+            oldest_people.append(row[NAME_NUMBER])
+
+    ui.print_result(oldest_people, 'The oldest person is')
+
+
+def get_persons_closest_to_average(table):
+    """
+    Question: Who is the closest to the average age?
+
+    Args:
+        table (list): data table to work on
+
+    Returns:
+        list: list of strings (name or names if there are two more with the same value)
+    """
+
+    table = sort_by_year(table)
+
+    average_age = 0
+    for row in table:
+        average_age += int(row[YEAR_NUMBER])
+    average_age = average_age / len(table)
+
+    for row in table:
+        row[YEAR_NUMBER] = abs(float(row[YEAR_NUMBER]) - average_age)
+
+    table = sort_by_year(table)
+
+    average_people = []
+
+    for row in table:
+        if row[YEAR_NUMBER] == table[0][YEAR_NUMBER]:
+            average_people.append(row[NAME_NUMBER])
+
+    ui.print_result(average_people, 'The average aged person is')
+
+
+def sort_by_year(table):
+    """
+    Sorts a table by the YEAR_NUMBER.
+    """
     iterations = 1
     n = len(table)
     
@@ -160,24 +207,4 @@ def get_oldest_person(table):
         else:
             iterations += 1
     
-    oldest_people = [table[0][NAME_NUMBER]]
-    
-    for row in table:
-        if row[YEAR_NUMBER] == table[0][YEAR_NUMBER]:
-            oldest_people.append(row[NAME_NUMBER])
-
-    ui.print_result(oldest_people, 'The oldest person(s) is: ')
-
-
-def get_persons_closest_to_average(table):
-    """
-    Question: Who is the closest to the average age?
-
-    Args:
-        table (list): data table to work on
-
-    Returns:
-        list: list of strings (name or names if there are two more with the same value)
-    """
-
-    # your code
+    return table
