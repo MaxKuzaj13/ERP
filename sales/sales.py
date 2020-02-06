@@ -11,7 +11,7 @@ Data table structure:
 """
 
 # everything you'll need is imported:
-# User interface module
+# User interface modulexxx
 import ui
 # data manager module
 import data_manager
