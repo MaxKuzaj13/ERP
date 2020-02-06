@@ -51,6 +51,9 @@ def start_module():
         id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
 
         remove(table, id_)
+    elif option == "4":
+        id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+        update(table,id_)
         
 def show_table(table):
     """
@@ -110,12 +113,6 @@ def remove(table, id_):
     return table
 
 
-        
-
-    
-
-    return table
-
 
 def update(table, id_):
     """
@@ -130,7 +127,26 @@ def update(table, id_):
     """
 
     # your code
+    labels = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
+    updated_row=[]
+    temp_list=[]
+    counter=0
+    ifWrong=True
+    for row in table:
+       
+        if row[0] == id_[0]:
+            ifWrong=False
+            updated_row.append(id_[0])
+            temp_list=ui.get_inputs(labels, "Please put new data:")
+            for rec in temp_list:
+                updated_row.append(rec)
+            table[counter]=updated_row
+        counter+=1
 
+    if ifWrong == True:
+        ui.print_error_message("Id doesn't exist")
+        
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 
