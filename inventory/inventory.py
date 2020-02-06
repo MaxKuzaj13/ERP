@@ -40,9 +40,13 @@ def start_module():
         # printing menu
         ui.print_menu("Inventory", list_options, "Main menu press 0")
         # Dick of available option to start equal function
-        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_available_items,
+        dic_function = {'1': show_table,
+                        "2": add,
+                        "3": remove,
+                        "4": update,
+                        "5": lambda table:  (get_available_items(table,  ui.get_inputs(["add year? "], ""))),
                         "6":get_average_durability_by_manufacturers, '0': exit}
-        # Start oprion
+        # Start option
         common.choose_by_dic(dic_function, table)
 
 
@@ -124,8 +128,9 @@ def update(table, id_):
 
 # special functions:
 # ------------------
-
+#@year
 def get_available_items(table, year):
+    print(year)
     """
     Question: Which items have not exceeded their durability yet (in a given year)?
 
@@ -140,7 +145,7 @@ def get_available_items(table, year):
     # your code
 
 
-def get_average_durability_by_manufacturers(table):
+def get_average_durability_by_manufacturers(table, *args):
     """
     Question: What are the average durability times for each manufacturer?
 

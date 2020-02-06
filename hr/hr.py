@@ -133,7 +133,7 @@ def update(table, id_):
     return table
 
 
-def get_oldest_person(table):
+def get_oldest_person(table, *args):
     """
     Question: Who is the oldest person?
 
@@ -155,7 +155,8 @@ def get_oldest_person(table):
     ui.print_result(oldest_people, 'The oldest person is')
 
 
-def get_persons_closest_to_average(table):
+def get_persons_closest_to_average(table, *args):
+    print('hhh')
     """
     Question: Who is the closest to the average age?
 

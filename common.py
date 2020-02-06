@@ -36,32 +36,20 @@ def choose_by_dic(dic_function, table, *args):
     exit_code = 0
     if option == "1":
         dic_function["1"](table)
-        print('tap 1')
     elif option == "2":
         dic_function["2"](table)
-        print('tap 2')
-        #hr.start_module()
     elif option == "3":
-        print('tap 3')
         id_ = ui.get_inputs(["Which ID do you want to remove? "],"")
         dic_function["3"](table, id_)
-        #inventory.start_module()
     elif option == "4":
-        print('tap 4')
         id_ = ui.get_inputs(["Which ID do you want to update? "],"")
         dic_function["4"](table, id_)
-        #accounting.start_module()
     elif option == "5":
-        print('tap 5')
         dic_function["5"](table)
-        #sales.start_module()
     elif option == "6":
-        print('tap 6')
-        dic_function["6"](table)
-        #crm.start_module()
+        dic_function["6"](table, *args)
     elif option == "0":
         main.main()
-        #sys.exit(0)
     else:
         raise KeyError("There is no such option.")
 

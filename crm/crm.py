@@ -123,7 +123,7 @@ def update(table, id_):
 # special functions:
 # ------------------
 
-def get_longest_name_id(table):
+def get_longest_name_id(table, *args):
     """
         Question: What is the id of the customer with the longest name?
 
@@ -140,7 +140,7 @@ def get_longest_name_id(table):
 
 # the question: Which customers has subscribed to the newsletter?
 # return type: list of strings (where string is like email+separator+name, separator=";")
-def get_subscribed_emails(table):
+def get_subscribed_emails(table, *args):
     """
         Question: Which customers has subscribed to the newsletter?
 

@@ -132,7 +132,7 @@ def update(table, id_):
 # special functions:
 # ------------------
 
-def get_counts_by_manufacturers(table):
+def get_counts_by_manufacturers(table, *args):
     """
     Question: How many different kinds of game are available of each manufacturer?
 

@@ -123,7 +123,7 @@ def update(table, id_):
 # special functions:
 # ------------------
 
-def which_year_max(table):
+def which_year_max(table,*args):
     """
     Question: Which year has the highest profit? (profit = in - out)
 
