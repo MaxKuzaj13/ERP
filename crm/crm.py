@@ -134,9 +134,24 @@ def get_longest_name_id(table, *args):
             string: id of the longest name (if there are more than one, return
                 the last by alphabetical order of the names)
         """
+    longest_name = 0
+    name = 1
+    id_name = 0
+    longest = []
+    long_name="z"
+    for row in table:
+        if longest_name > len(row[name]):
+            longest_name = len(row[name])
+        
+    # for row in table:
+    #     if int(longest_name) == int(len(row[name])):
+    #         longest.append(row[name])
+    #         for name in longest:
+    #             if long_name > name:
+    #                 long_name = name
 
-    # your code
-
+    # print(long_name)
+    print("\n \t ID of longest name is:  ", row[id_name], "And His name is!: ", row[name])
 
 # the question: Which customers has subscribed to the newsletter?
 # return type: list of strings (where string is like email+separator+name, separator=";")
