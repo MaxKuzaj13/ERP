@@ -32,25 +32,29 @@ def start_module():
     Returns:
         None
     """
-    list_options = ["Show table",
-               "Add",
-               "Remove",
-               "Update",
-               "Get lowest price item",
-               "Get items sold between"]
-    
-    #options = list_options    
-    ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
-    inputs = ui.get_inputs(["Please enter a number: "], "")
-    option = inputs[0]
-    if option == "1":
-        show_table(table)    
-    elif option == "2":
-        add(table)
-    elif option == "3":
-        id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+    while True:
+        list_options = ["Show table",
+                   "Add",
+                   "Remove",
+                   "Update",
+                   "Get lowest price item",
+                   "Get items sold between"]
 
-        remove(table, id_)
+        #options = list_options
+        ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
+        inputs = ui.get_inputs(["Please enter a number: "], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+
+            remove(table, id_)
+        elif option == "4":
+            id_ = ui.get_inputs(["PODAJ ID:"], 'Enter ID:')
+            update(table,id_)
         
 def show_table(table):
     """
@@ -123,7 +127,26 @@ def update(table, id_):
     """
 
     # your code
+    labels = ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "]
+    updated_row=[]
+    temp_list=[]
+    counter=0
+    ifWrong=True
+    for row in table:
+       
+        if row[0] == id_[0]:
+            ifWrong=False
+            updated_row.append(id_[0])
+            temp_list=ui.get_inputs(labels, "Please put new data:")
+            for rec in temp_list:
+                updated_row.append(rec)
+            table[counter]=updated_row
+        counter+=1
 
+    if ifWrong == True:
+        ui.print_error_message("Id doesn't exist")
+        
+    data_manager.write_table_to_file(file_name, table)
     return table
 
 

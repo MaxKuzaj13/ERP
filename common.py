@@ -87,8 +87,10 @@ def add_universal(table, title_list):
 
 
 def remove_universal(table, id_):
+    # chuse elemets ID from list
     element_index_in_list = 0
     for row in table:
+        # use element  ID to check it is in list if it is remove this row
         if id_[element_index_in_list] in row:
             table.remove(row)
         else:
