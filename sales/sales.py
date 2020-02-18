@@ -58,7 +58,8 @@ def start_module():
         elif option == "5":
             get_lowest_price_item_id(table)
         elif option == "0":
-            main.main()
+            break
+
 
 def show_table(table):
     """
