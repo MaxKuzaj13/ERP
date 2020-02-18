@@ -57,6 +57,9 @@ def start_module():
             update(table,id_)
         elif option == "5":
             get_lowest_price_item_id(table)
+        elif option == "0":
+            main.main()
+
 def show_table(table):
     """
     Display a table

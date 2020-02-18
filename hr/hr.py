@@ -156,7 +156,6 @@ def get_oldest_person(table, *args):
 
 
 def get_persons_closest_to_average(table, *args):
-    print('hhh')
     """
     Question: Who is the closest to the average age?
 

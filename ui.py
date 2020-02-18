@@ -67,7 +67,6 @@ def print_result(result, label):
     print(label, end=": ")
 
     if type(result) == list:
-        print()
         for element in result: 
             if type(element) == list: #list of lists
                 for record in element:
@@ -76,9 +75,11 @@ def print_result(result, label):
             else:    
                 print(element) #list
     elif type(result) == dict:
-        print()
-        
-        #jeszcze nie obsluguje slownikow ;)
+        list = result.items()
+        print(f"{label}")
+        for item in list:
+            print(f"{item[0]} {item[1]}")
+
     else:
         print(result)
 

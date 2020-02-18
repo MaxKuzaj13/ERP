@@ -14,7 +14,14 @@ import common
 from sales import sales
 from crm impor
 from datetime import datetime
-
+import ui
+# data manager module
+import data_manager
+# common module
+import common
+file_name = "crm/customers.csv"
+table = data_manager.get_table_from_file(file_name)
+title_list = ["ID", "Name", "Email", "Subscribed"]
 
 def start_module():
     """
@@ -25,7 +32,27 @@ def start_module():
     Returns:`
         None
     """
-
+    while True:
+        # List of available option
+        list_options = ['get_the_last_buyer_name',
+                        'get_the_last_buyer_id',
+                        'Remove employee',
+                        'Update employee',
+                        'Get oldest employee',
+                        'Get employee with age closest to average']
+        # printing menu
+        ui.print_menu("Human resources manager", list_options, "(0) Main menu")
+        # Dict of available option to start equal function
+        dic_function = {'1': get_the_last_buyer_name,
+                        '2': get_the_last_buyer_id,
+                        '3': print('nie zrobione'),
+                        '4': print('nie zrobione'),
+                        '5': print('nie zrobione'),
+                        '6': print('nie zrobione'),
+                        '0': exit}
+        # Start option
+        common.choose_by_dic(dic_function, table)
+    # your code
     # your code
 Data Analyser- get_the_last_buyer_name
     pass
@@ -42,7 +69,8 @@ def get_the_last_buyer_name():
     # your code
 
 
-def get_the_last_buyer_id():
+def get_the_last_buyer_id(table):
+    print('udalo sie')
     """
     Returns the customer _id_ of the customer made sale last.
 
