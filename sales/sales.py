@@ -23,6 +23,7 @@ file_name = "sales/sales.csv"
 table = data_manager.get_table_from_file(file_name)
 title_list = "ID", "Title", "Price", "Month", "Day", "Year"
 list_labels = "ID: ", "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
+test_lista_id = ["kH34Ju#&", "jH34Ju#&", "kH35Jr#&", "kH94Jw#&"]     #TYLKO DO TESOWANIA, MOZNA POTEM WYJEBAC
 
 def start_module():
     """
@@ -57,6 +58,9 @@ def start_module():
             update(table,id_)
         elif option == "5":
             get_lowest_price_item_id(table)
+        elif option == "9":
+            get_the_sum_of_prices(test_lista_id)
+
 def show_table(table):
     """
     Display a table
@@ -287,6 +291,17 @@ def get_the_sum_of_prices(item_ids):
     Returns:
         number: the sum of the items' prices
     """
+    sum = 0
+    i = 0
+    id_column = 0
+    price_column = 2
+    price_sum=0
+    for row in table:
+        if row[id_column] in item_ids:
+            price_sum += int(row[price_column])
+            #print(price_sum)
+        i += 1
+
 
     # your code
 
