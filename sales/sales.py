@@ -60,6 +60,8 @@ def start_module():
             get_lowest_price_item_id(table)
         elif option == "9":
             get_the_sum_of_prices(test_lista_id)
+        elif option == "0":
+            break
 
 def show_table(table):
     """

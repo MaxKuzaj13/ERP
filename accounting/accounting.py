@@ -133,8 +133,23 @@ def which_year_max(table,*args):
     Returns:
         number
     """
-
-    # your code
+    yearly_profit = {}
+    for item in table:
+        if item[4] == 'in':
+            if item[3] not in yearly_profit.keys():
+                yearly_profit.update({item[3]: float(item[5])})
+            else:
+                yearly_profit[item[3]] += float(item[5])
+        elif item[4] == 'out':
+            if item[3] not in yearly_profit.keys():
+                yearly_profit.update({item[3]: (float(item[5]) * -1)})
+            else:
+                yearly_profit[item[3]] -= float(item[5])
+    max_profit = max(yearly_profit.values())
+    for key, value in yearly_profit.items():
+        if value == max_profit:
+            ui.print_result(int(key), '')
+            return int(key)
 
 
 def avg_amount(table, year):
