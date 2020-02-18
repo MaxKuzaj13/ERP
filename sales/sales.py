@@ -291,19 +291,17 @@ def get_the_sum_of_prices(item_ids):
     Returns:
         number: the sum of the items' prices
     """
-    sum = 0
+
     i = 0
     id_column = 0
     price_column = 2
-    price_sum=0
+    price_sum = 0
     for row in table:
         if row[id_column] in item_ids:
             price_sum += int(row[price_column])
             #print(price_sum)
         i += 1
 
-
-    # your code
 
 
 def get_the_sum_of_prices_from_table(table, item_ids):
@@ -318,7 +316,15 @@ def get_the_sum_of_prices_from_table(table, item_ids):
         number: the sum of the items' prices
     """
 
-    # your code
+    i = 0
+    id_column = 0
+    price_column = 2
+    price_sum=0
+    for row in table:
+        if row[id_column] in item_ids:
+            price_sum += int(row[price_column])
+        i += 1
+
 
 
 def get_customer_id_by_sale_id(sale_id):
