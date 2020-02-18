@@ -59,7 +59,7 @@ def start_module():
         elif option == "5":
             get_lowest_price_item_id(table)
         elif option == "9":
-            get_the_sum_of_prices(test_lista_id)
+            print(get_the_sum_of_prices(test_lista_id))    #TYLKO DO TESTOW
         elif option == "0":
             break
 
@@ -303,6 +303,7 @@ def get_the_sum_of_prices(item_ids):
             price_sum += int(row[price_column])
             #print(price_sum)
         i += 1
+    return price_sum
 
 
 
@@ -326,7 +327,7 @@ def get_the_sum_of_prices_from_table(table, item_ids):
         if row[id_column] in item_ids:
             price_sum += int(row[price_column])
         i += 1
-
+    return price_sum
 
 
 def get_customer_id_by_sale_id(sale_id):
