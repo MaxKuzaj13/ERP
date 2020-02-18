@@ -63,6 +63,7 @@ def start_module():
         elif option == "0":
             break
 
+
 def show_table(table):
     """
     Display a table

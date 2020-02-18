@@ -66,18 +66,18 @@ def print_result(result, label):
 
     print(label, end=": ")
 
-    if type(result) == list:
+    if isinstance(result, list):
         for element in result: 
-            if type(element) == list: #list of lists
+            if isinstance(element, list): #list of lists
                 for record in element:
                     print(record, end="  ")
                 print()
             else:    
                 print(element) #list
-    elif type(result) == dict:
-        list = result.items()
+    elif isinstance(result, dict):
+        list_elem = result.items()
         print(f"{label}")
-        for item in list:
+        for item in list_elem:
             print(f"{item[0]} {item[1]}")
 
     else:
