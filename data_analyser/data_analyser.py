@@ -8,11 +8,12 @@ Use the functions of the modules instead.
 
 # todo: importing everything you need
 
-# importing everything you need
+importing everything you need
 import ui
 import common
 from sales import sales
-from crm import crm
+from crm impor
+from datetime import datetime
 
 
 def start_module():
@@ -21,12 +22,12 @@ def start_module():
      * User can access default special features from here.
      * User can go back to main menu from here.
 
-    Returns:
+    Returns:`
         None
     """
 
     # your code
-
+Data Analyser- get_the_last_buyer_name
     pass
 
 
@@ -48,8 +49,24 @@ def get_the_last_buyer_id():
     Returns:
         str: Customer id of the last buyer
     """
+    crm_table = crm.table
+    sales_table = sales.table
+    item_date = 0
+    last_item_date = 0
 
-    # your code
+    for row in sales_table:
+        item_date = sales_table[5]+sales_table[3]+sales_table[4]
+        if item_date > last_item_date:
+            last_item_date = item_date
+            temp_sales_id = sales_table[0]
+    for row in crm_table:
+        temp_crm_id = crm_table[0]
+        if
+
+
+
+
+
 
 
 def get_the_buyer_name_spent_most_and_the_money_spent():
