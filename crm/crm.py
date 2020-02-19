@@ -29,22 +29,34 @@ def start_module():
         None
     """
 
+    table = data_manager.get_table_from_file(data_file)
 
     while True:
-        # List of available option
-        list_options = ['Show table',
-                        'Add new customer',
-                        'Remove customer',
-                        'Update customer',
-                        'Show ID of customer with longest name',
-                        'Show customers which has subscripted the newsletter']
-        # printing menu
-        ui.print_menu("Customer relation management", list_options, "Main menu press 0")
-        # Dick of available option to start equal function
-        dic_function = {'1': show_table, "2": add, "3": remove, "4": update, "5": get_longest_name_id,
-                        "6": get_subscribed_emails, '0': exit}
-        # Start oprion
-        common.choose_by_dic(dic_function, table)
+        ui.print_menu("CRM", options, "Main menu")
+        inputs = ui.get_inputs(["Please enter a number"], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            table = add(table, title_list)
+        elif option == "3":
+            id_ = ui.get_inputs(["Give unique item id to remove"], "")[0]
+            table = remove(table, id_)
+        elif option == "4":
+            id_ = ui.get_inputs(["Give unique item id to update"], "")[0]
+            table = update(table, id_, title_list)
+        elif option == "5":
+            id = get_longest_name_id(table)
+            ui.print_result(id, 'The longest name id is: ')
+        elif option == "6":
+            subscribers = get_subscribed_emails(table)
+            ui.print_result(subscribers, 'Subscribers list: ')
+        elif option == "0":
+            break
+        else:
+            raise KeyError("There is no such option.")
+
+    data_manager.write_table_to_file(data_file, table)
 
 def show_table(table):
     """
@@ -165,10 +177,11 @@ def get_subscribed_emails(table, *args):
         Returns:
             list: list of strings (where a string is like "email;name")
         """
-
-    # your code
-
-    # your code
+    subscribers = []
+    for line in table:
+        if '1' in line[3]:
+            subscribers.append(line[2] + ';' + line[1])
+    return subscribers
 
 
 # functions supports data analyser
@@ -186,9 +199,13 @@ def get_name_by_id(id):
     Returns:
         str: the name of the customer
     """
+    table = data_manager.get_table_from_file(file_name)
+    customers = []
 
-    # your code
-
+    for row in table:
+        if id_ == row[0]:
+            customers.append(row[1])
+    return customers
 
 
 def get_name_by_id_from_table(table, id):
@@ -202,5 +219,8 @@ def get_name_by_id_from_table(table, id):
     Returns:
         str: the name of the customer
     """
-
-    # your code
+    customers = []
+    for row in table:
+        if id_ == row[0]:
+            customers.append(row[1])
+    return customers
