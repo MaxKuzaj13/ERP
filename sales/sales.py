@@ -25,6 +25,14 @@ title_list = "ID", "Title", "Price", "Month", "Day", "Year"
 list_labels = "ID: ", "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
 test_lista_id = ["kH34Ju#&", "jH34Ju#&", "kH35Jr#&", "kH94Jw#&"]     #TYLKO DO TESOWANIA, MOZNA POTEM WYJEBAC
 
+ID = 0
+TITLE = 1
+PRICE = 2
+MONTH = 3
+DAY = 4
+YEAR = 5
+
+
 def start_module():
     """
     Starts this module and displays its menu.
@@ -266,7 +274,21 @@ def get_item_id_sold_last_from_table(table):
         str: the _id_ of the item that was sold most recently.
     """
 
-    # your code
+    latest_year = 0
+    latest_month = 0
+    latest_day = 0
+
+    for row in table:
+        if row[YEAR] > latest_year:
+            latest_year = row[YEAR]
+    for row in table:
+        if row[MONTH] > latest_month and row[YEAR] == latest_year:
+            latest_month = row[MONTH]
+    for row in table:
+        if row[DAY] > latest_day and row[YEAR] == latest_year and row[MONTH] == latest_month:
+            latest_day = row[DAY]
+            _id_ = row[ID]
+    return _id_
 
 
 def get_item_title_sold_last_from_table(table):
