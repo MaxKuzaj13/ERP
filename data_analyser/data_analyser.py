@@ -126,7 +126,15 @@ def get_the_most_frequent_buyers_names(num=1):
             The first one bought the most frequent. eg.: [('Genoveva Dingess', 8), ('Missy Stoney', 3)]
     """
 
-    # your code
+    ID_ = 0
+    SALES = 1
+
+    frequent_buyers_with_ids = get_the_most_frequent_buyers_ids(num)
+    frequent_buyers_with_names = []
+    for line in frequent_buyers_with_ids:
+        new_line = (crm.get_name_by_id(line[ID_]), line[SALES])
+        frequent_buyers_with_names.append(new_line)
+    return frequent_buyers_with_names
 
 
 def get_the_most_frequent_buyers_ids(num=1):
@@ -142,4 +150,13 @@ def get_the_most_frequent_buyers_ids(num=1):
             The first one bought the most frequent. eg.: [(aH34Jq#&, 8), (bH34Jq#&, 3)]
     """
 
-    # your code
+    ID_ = 0
+    SALES = 1
+
+    customer_ids = sales.get_all_customer_ids()
+    sales_for_customer_dict = sales.get_all_sales_ids_for_customer_ids()
+    sales_for_customer_iterable = sales_for_customer_dict.items()
+    # which ones are biggest buyers?
+    sales_for_customer_tuples = [(sales_for_customer_iterable[ID_], len(sales_for_customer_iterable[SALES])) for customer in sales_for_customer_iterable]
+    sales_for_customer_tuples.sort(key=lambda x: -x[SALES])
+    return sales_for_customer_tuples
