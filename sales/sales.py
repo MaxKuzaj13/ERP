@@ -40,7 +40,15 @@ def start_module():
                    "Remove",
                    "Update",
                    "Get lowest price item",
-                   "Get items sold between"]
+                   "Get items sold between",
+                   "Get title by id",
+                   "Get title by id from table",
+                   "Get item id sold last",
+                   "Get_item_id_sold_last_from_table",
+                   "Get item title sold last from table",
+                   "Get_the_sum_of_prices",
+                   "Get_the_sum_of_prices_from_table",
+                        ]
 
         #options = list_options
         ui.print_menu("Sales options:", list_options, "(0) Back to main menu")
@@ -58,8 +66,41 @@ def start_module():
             update(table,id_)
         elif option == "5":
             get_lowest_price_item_id(table)
-        elif option == "9":
-            print(get_the_sum_of_prices(test_lista_id))    #TYLKO DO TESTOW
+        # elif option == '6':
+        #     ui.print_result(get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to))
+        elif option == "7":
+            id_ = input("PODAJ ID: ")
+            ui.print_result(get_title_by_id(id_), 'TITLE BY ID')
+        elif option == "8":
+            id_ = input("PODAJ ID: ")
+            # id_ = ui.get_inputs(["PODAJ ID: "], "")
+            ui.print_result(get_title_by_id_from_table(table, id_), 'TITLE BY ID')
+        elif option == '9':
+            ui.print_result(get_item_id_sold_last())
+        elif option == '10':
+            ui.print_result(get_item_id_sold_last_from_table(table), 'ID OF ITEM SOLD LAST TIME')
+        elif option == '11':
+            ui.print_result(get_item_title_sold_last_from_table(table), 'TITLE')
+        elif option == "12":
+            print(get_the_sum_of_prices(test_lista_id))  # TYLKO DO TESTOW
+        # elif option == "13":
+        #     get_the_sum_of_prices_from_table((table, item_ids))
+        # elif option == '14':
+        #     get_customer_id_by_sale_id(sale_id)
+        # elif option == '15':
+        #       get_customer_id_by_sale_id_from_table(table, sale_id)
+        elif option == '16':
+            get_all_customer_ids()
+        elif option == '17':
+            get_all_customer_ids_from_table(table)
+        # elif option == '18':
+        #     get_all_sales_ids_for_customer_ids()
+        # elif option == '19':
+        #     get_all_sales_ids_for_customer_ids_from_table(table)
+        # elif option == '20':
+        #     get_num_of_sales_per_customer_ids()
+        # elif option == '21':
+        #     get_num_of_sales_per_customer_ids_from_table(table)
         elif option == "0":
             break
 
@@ -88,7 +129,7 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-    
+
     list_labels = "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
     id_record = common.generate_random(table)
     new_rec = ui.get_inputs(list_labels, "")
@@ -141,7 +182,7 @@ def update(table, id_):
     counter=0
     ifWrong=True
     for row in table:
-       
+
         if row[0] == id_[0]:
             ifWrong=False
             updated_row.append(id_[0])
@@ -153,7 +194,7 @@ def update(table, id_):
 
     if ifWrong == True:
         ui.print_error_message("Id doesn't exist")
-        
+
     data_manager.write_table_to_file(file_name, table)
     return table
 
@@ -183,7 +224,7 @@ def get_lowest_price_item_id(table):
     for row in table:
         if int(row[price]) == min_price:
             print("\n\tID of cheapest game is: ",row[id_price],  " Name of this game is:", row[name_game], "\n ")
-        
+
 
 def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
     """
@@ -211,7 +252,7 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
 # --------------------------------
 
 
-def get_title_by_id(id):
+def get_title_by_id(id_):
 
     """
     Reads the table with the help of the data_manager module.
@@ -224,10 +265,17 @@ def get_title_by_id(id):
         str: the title of the item
     """
 
-    # your code
+    name_game = 1
+    id_column = 0
 
+    for item in table:
+        if item[id_column] == id_:
+            return item[name_game]
+    else:
+        return 'ID NOT FOUND'
 
-def get_title_by_id_from_table(table, id):
+def get_title_by_id_from_table(table, id_):
+
 
     """
     Returns the title (str) of the item with the given id (str) on None om case of non-existing id.
@@ -240,8 +288,14 @@ def get_title_by_id_from_table(table, id):
         str: the title of the item
     """
 
-    # your code
+    name_game = 1
+    id_column = 0
 
+    for item in table:
+        if item[id_column] == id_:
+            return item[name_game]
+    else:
+        return 'ID NOT FOUND'
 
 def get_item_id_sold_last():
     """
@@ -267,21 +321,31 @@ def get_item_id_sold_last_from_table(table):
     """
 
     # your code
+    item_date = 0
+    last_item_date = 0
+
+    for row in table:
+        for column in row:
+            item_date = row[5] + row[3] + row[4]
+            if int(item_date) > int(last_item_date):
+                last_item_date = item_date
+                temp_sales_id = row[0]
+    return temp_sales_id
+
+
+    # ui.print_result(temp_sales_id, "ID: ")
 
 
 def get_item_title_sold_last_from_table(table):
     """
     Returns the _title_ of the item that was sold most recently.
-
     Args:
         table (list of lists): the sales table
-
     Returns:
         str: the _title_ of the item that was sold most recently.
     """
 
     # your code
-
 
 def get_the_sum_of_prices(item_ids):
     """
@@ -383,7 +447,6 @@ def get_all_customer_ids_from_table(table):
     """
 
     # your code
-
 
 def get_all_sales_ids_for_customer_ids():
     """
