@@ -287,8 +287,8 @@ def get_item_id_sold_last_from_table(table):
     for row in table:
         if row[DAY] > latest_day and row[YEAR] == latest_year and row[MONTH] == latest_month:
             latest_day = row[DAY]
-            _id_ = row[ID]
-    return _id_
+            last_sold_id = row[ID]
+    return last_sold_id
 
 
 def get_item_title_sold_last_from_table(table):
@@ -302,7 +302,10 @@ def get_item_title_sold_last_from_table(table):
         str: the _title_ of the item that was sold most recently.
     """
 
-    # your code
+    last_sold_id = get_item_id_sold_last_from_table(table)
+    for row in table:
+        if row[ID] == last_sold_id:
+            return row[TITLE]
 
 
 def get_the_sum_of_prices(item_ids):
