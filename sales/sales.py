@@ -48,6 +48,12 @@ def start_module():
                    "Get item title sold last from table",
                    "Get_the_sum_of_prices",
                    "Get_the_sum_of_prices_from_table",
+                   "Get_customer_id_by_sale_id",
+                   "Get_customer_id_by_sale_id_from_table",
+                   "Get_all_customer_ids",
+                   "Get_all_customer_ids_from_table",
+                   "Get_all_sales_ids_for_customer",
+                   "Get_all_sales_ids_for_customer_ids_from_table"
                         ]
 
         #options = list_options
@@ -76,7 +82,7 @@ def start_module():
             # id_ = ui.get_inputs(["PODAJ ID: "], "")
             ui.print_result(get_title_by_id_from_table(table, id_), 'TITLE BY ID')
         elif option == '9':
-            ui.print_result(get_item_id_sold_last())
+            ui.print_result(get_item_id_sold_last(), 'SOLD LAST')
         elif option == '10':
             ui.print_result(get_item_id_sold_last_from_table(table), 'ID OF ITEM SOLD LAST TIME')
         elif option == '11':
@@ -90,13 +96,13 @@ def start_module():
         # elif option == '15':
         #       get_customer_id_by_sale_id_from_table(table, sale_id)
         elif option == '16':
-            get_all_customer_ids()
+            print('CUSTOMERS ID: ', get_all_customer_ids())
         elif option == '17':
-            get_all_customer_ids_from_table(table)
-        # elif option == '18':
-        #     get_all_sales_ids_for_customer_ids()
-        # elif option == '19':
-        #     get_all_sales_ids_for_customer_ids_from_table(table)
+            print(get_all_customer_ids_from_table(table))
+        elif option == '18':
+            get_all_sales_ids_for_customer_ids()
+        elif option == '19':
+            get_all_sales_ids_for_customer_ids_from_table(table)
         # elif option == '20':
         #     get_num_of_sales_per_customer_ids()
         # elif option == '21':
@@ -243,8 +249,6 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
         list: list of lists (the filtered table)
     """
 
-
-
     # your code
 
 
@@ -305,8 +309,51 @@ def get_item_id_sold_last():
     Returns:
         str: the _id_ of the item that was sold most recently.
     """
+    #
 
-    # your code
+    # id_column = 0
+    # sum_date_table = []
+    #
+    # max_date = 0
+    # dict = { key : value}
+
+    # for data in table:
+    #     sum_date_table.append(data[id_column])
+    #     if(len(data[MONTH])) < 2:
+    #         data[MONTH] = '0' + data[MONTH]
+    #         sum_date = (data[YEAR] + data[MONTH] + data[DAY])
+    #         sum_date_table.append(int(sum_date))
+    #     elif(len(data[DAY])) < 2:
+    #         data[DAY] = '0' + data[DAY]
+    #         sum_date = (data[YEAR] + data[MONTH] + data[DAY])
+    #         sum_date_table.append(int(sum_date))
+    #     else:
+    #         sum_date = (data[YEAR] + data[MONTH] + data[DAY])
+    #         sum_date_table.append(int(sum_date))
+    # print(sum_date_table)
+
+    # get_item_id_sold_last_from_table(table)
+
+    YEAR = 5
+    MONTH = 3
+    DAY = 4
+    ID = 0
+
+    latest_year = 0
+    latest_month = 0
+    latest_day = 0
+
+    for row in table:
+        if int(row[YEAR]) > latest_year:
+            latest_year = int(row[YEAR])
+    for row in table:
+        if int(row[MONTH]) > latest_month and int(row[YEAR]) == latest_year:
+            latest_month = int(row[MONTH])
+    for row in table:
+        if int(row[DAY]) > latest_day and int(row[YEAR]) == latest_year and int(row[MONTH]) == latest_month:
+            latest_day = int(row[DAY])
+            last_sold_id = row[ID]
+    return last_sold_id
 
 
 def get_item_id_sold_last_from_table(table):
@@ -320,20 +367,26 @@ def get_item_id_sold_last_from_table(table):
         str: the _id_ of the item that was sold most recently.
     """
 
-    # your code
-    item_date = 0
-    last_item_date = 0
+    YEAR = 5
+    MONTH = 3
+    DAY = 4
+    ID = 0
+
+    latest_year = 0
+    latest_month = 0
+    latest_day = 0
 
     for row in table:
-        for column in row:
-            item_date = row[5] + row[3] + row[4]
-            if int(item_date) > int(last_item_date):
-                last_item_date = item_date
-                temp_sales_id = row[0]
-    return temp_sales_id
-
-
-    # ui.print_result(temp_sales_id, "ID: ")
+        if int(row[YEAR]) > latest_year:
+            latest_year = int(row[YEAR])
+    for row in table:
+        if int(row[MONTH]) > latest_month and int(row[YEAR]) == latest_year:
+            latest_month = int(row[MONTH])
+    for row in table:
+        if int(row[DAY]) > latest_day and int(row[YEAR]) == latest_year and int(row[MONTH]) == latest_month:
+            latest_day = int(row[DAY])
+            last_sold_id = row[ID]
+    return last_sold_id
 
 
 def get_item_title_sold_last_from_table(table):
@@ -345,7 +398,28 @@ def get_item_title_sold_last_from_table(table):
         str: the _title_ of the item that was sold most recently.
     """
 
-    # your code
+    YEAR = 5
+    MONTH = 3
+    DAY = 4
+    TITLE = 1
+
+    latest_year = 0
+    latest_month = 0
+    latest_day = 0
+
+    for row in table:
+        if int(row[YEAR]) > latest_year:
+            latest_year = int(row[YEAR])
+    for row in table:
+        if int(row[MONTH]) > latest_month and int(row[YEAR]) == latest_year:
+            latest_month = int(row[MONTH])
+    for row in table:
+        if int(row[DAY]) > latest_day and int(row[YEAR]) == latest_year and int(row[MONTH]) == latest_month:
+            latest_day = int(row[DAY])
+            last_sold_id = row[TITLE]
+    return last_sold_id
+
+
 
 def get_the_sum_of_prices(item_ids):
     """
@@ -406,7 +480,7 @@ def get_customer_id_by_sale_id(sale_id):
     Returns:
          str: customer_id that belongs to the given sale id
     """
-
+    # DRUGI AREK
     # your code
 
 
@@ -421,7 +495,7 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
     Returns:
         str: customer_id that belongs to the given sale id
     """
-
+    # DRUGI AREK
     # your code
 
 
@@ -432,9 +506,12 @@ def get_all_customer_ids():
     Returns:
          set of str: set of customer_ids that are present in the table
     """
+    customer_id_table = []
+    ID = 6
 
-    # your code
-
+    for customer in table:
+        customer_id_table.append(customer[ID])
+    return customer_id_table
 
 def get_all_customer_ids_from_table(table):
     """
@@ -446,7 +523,12 @@ def get_all_customer_ids_from_table(table):
          set of str: set of customer_ids that are present in the table
     """
 
-    # your code
+    customer_id_table = []
+    ID = 6
+
+    for customer in table:
+        customer_id_table.append(customer[ID])
+    return customer_id_table
 
 def get_all_sales_ids_for_customer_ids():
     """
@@ -460,7 +542,9 @@ def get_all_sales_ids_for_customer_ids():
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
             all the sales id belong to the given customer_id
     """
-
+    dict_sale = {}
+    ID_SALE = 0
+    ID_CUSTOMER = 6
     # your code
 
 
@@ -476,7 +560,10 @@ def get_all_sales_ids_for_customer_ids_from_table(table):
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
          all the sales id belong to the given customer_id
     """
-
+    dict_sale = {}
+    ID_SALE = 0
+    ID_CUSTOMER = 6
+    #data analaser
     # your code
 
 
