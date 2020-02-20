@@ -25,6 +25,14 @@ title_list = "ID", "Title", "Price", "Month", "Day", "Year"
 list_labels = "ID: ", "Title: ", "Price: ", "Month: ", "Day: ", "Year: "
 test_lista_id = ["kH34Ju#&", "jH34Ju#&", "kH35Jr#&", "kH94Jw#&"]     #TYLKO DO TESOWANIA, MOZNA POTEM WYJEBAC
 
+ID = 0
+TITLE = 1
+PRICE = 2
+MONTH = 3
+DAY = 4
+YEAR = 5
+
+
 def start_module():
     """
     Starts this module and displays its menu.
@@ -249,11 +257,6 @@ def get_items_sold_between(table, month_from, day_from, year_from, month_to, day
         list: list of lists (the filtered table)
     """
 
-    # your code
-
-
-# functions supports data abalyser
-# --------------------------------
 
 
 def get_title_by_id(id_):
@@ -269,6 +272,7 @@ def get_title_by_id(id_):
         str: the title of the item
     """
 
+
     name_game = 1
     id_column = 0
 
@@ -277,6 +281,7 @@ def get_title_by_id(id_):
             return item[name_game]
     else:
         return 'ID NOT FOUND'
+
 
 def get_title_by_id_from_table(table, id_):
 
@@ -292,8 +297,10 @@ def get_title_by_id_from_table(table, id_):
         str: the title of the item
     """
 
+
     name_game = 1
     id_column = 0
+
 
     for item in table:
         if item[id_column] == id_:
@@ -309,6 +316,7 @@ def get_item_id_sold_last():
     Returns:
         str: the _id_ of the item that was sold most recently.
     """
+
     #
 
     # id_column = 0
@@ -356,6 +364,7 @@ def get_item_id_sold_last():
     return last_sold_id
 
 
+
 def get_item_id_sold_last_from_table(table):
     """
     Returns the _id_ of the item that was sold most recently.
@@ -372,11 +381,13 @@ def get_item_id_sold_last_from_table(table):
     DAY = 4
     ID = 0
 
+
     latest_year = 0
     latest_month = 0
     latest_day = 0
 
     for row in table:
+
         if int(row[YEAR]) > latest_year:
             latest_year = int(row[YEAR])
     for row in table:
@@ -385,6 +396,16 @@ def get_item_id_sold_last_from_table(table):
     for row in table:
         if int(row[DAY]) > latest_day and int(row[YEAR]) == latest_year and int(row[MONTH]) == latest_month:
             latest_day = int(row[DAY])
+
+        if row[YEAR] > latest_year:
+            latest_year = row[YEAR]
+    for row in table:
+        if row[MONTH] > latest_month and row[YEAR] == latest_year:
+            latest_month = row[MONTH]
+    for row in table:
+        if row[DAY] > latest_day and row[YEAR] == latest_year and row[MONTH] == latest_month:
+            latest_day = row[DAY]
+
             last_sold_id = row[ID]
     return last_sold_id
 
@@ -418,6 +439,12 @@ def get_item_title_sold_last_from_table(table):
             latest_day = int(row[DAY])
             last_sold_id = row[TITLE]
     return last_sold_id
+
+
+    last_sold_id = get_item_id_sold_last_from_table(table)
+    for row in table:
+        if row[ID] == last_sold_id:
+            return row[TITLE]
 
 
 
@@ -480,8 +507,12 @@ def get_customer_id_by_sale_id(sale_id):
     Returns:
          str: customer_id that belongs to the given sale id
     """
-    # DRUGI AREK
-    # your code
+
+    customer_id = []
+    for items in table:
+        if sale_id == items[0]:
+            customer_id.append(items[6])
+    return customer_id
 
 
 def get_customer_id_by_sale_id_from_table(table, sale_id):
@@ -495,8 +526,12 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
     Returns:
         str: customer_id that belongs to the given sale id
     """
-    # DRUGI AREK
-    # your code
+
+    customer_id = []
+    for items in table:
+        if sale_id == items[0]:
+            customer_id.append(items[6])
+    return customer_id
 
 
 def get_all_customer_ids():
@@ -506,12 +541,14 @@ def get_all_customer_ids():
     Returns:
          set of str: set of customer_ids that are present in the table
     """
+
     customer_id_table = []
     ID = 6
 
     for customer in table:
         customer_id_table.append(customer[ID])
     return customer_id_table
+
 
 def get_all_customer_ids_from_table(table):
     """
@@ -523,8 +560,10 @@ def get_all_customer_ids_from_table(table):
          set of str: set of customer_ids that are present in the table
     """
 
+
     customer_id_table = []
     ID = 6
+
 
     for customer in table:
         customer_id_table.append(customer[ID])
@@ -542,10 +581,11 @@ def get_all_sales_ids_for_customer_ids():
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
             all the sales id belong to the given customer_id
     """
+
     dict_sale = {}
     ID_SALE = 0
     ID_CUSTOMER = 6
-    # your code
+
 
 
 def get_all_sales_ids_for_customer_ids_from_table(table):
@@ -560,11 +600,17 @@ def get_all_sales_ids_for_customer_ids_from_table(table):
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
          all the sales id belong to the given customer_id
     """
+
     dict_sale = {}
     ID_SALE = 0
     ID_CUSTOMER = 6
-    #data analaser
-    # your code
+
+
+def get_add(list):
+    sum = 0
+    for items in list:
+        sum += items
+    return sum
 
 
 def get_num_of_sales_per_customer_ids():
@@ -576,8 +622,17 @@ def get_num_of_sales_per_customer_ids():
      Returns:
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
-
-    # your code
+    table = data_manager.get_table_from_file("sales/sales.csv")
+    my_dict = {}
+    for t in table:
+        sum = 0
+        if t[6] not in my_dict:
+            my_dict.setdefault(t[6], []).append((sum+1))
+        else:
+            my_dict.setdefault(t[6], []).append((sum+1))
+    result = {key: get_add(values) for key, values in my_dict.items()}
+    return result
+    
 
 
 def get_num_of_sales_per_customer_ids_from_table(table):
@@ -591,4 +646,12 @@ def get_num_of_sales_per_customer_ids_from_table(table):
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
-    # your code
+    my_dict = {}
+    for t in table:
+        sum = 0
+        if t[6] not in my_dict:
+            my_dict.setdefault(t[6], []).append((sum+1))
+        else:
+            my_dict.setdefault(t[6], []).append((sum+1))
+    result = {key: get_add(values) for key, values in my_dict.items()}
+    return result
