@@ -22,6 +22,7 @@ file_name = "crm/customers.csv"
 table = data_manager.get_table_from_file(file_name)
 title_list = ["ID", "Name", "Email", "Subscribed"]
 
+
 def start_module():
     """
     Starts this module and displays its menu.
@@ -88,7 +89,9 @@ def get_the_buyer_name_spent_most_and_the_money_spent():
         tuple: Tuple of customer name and the sum the customer spent eg.: ('Daniele Coach', 42)
     """
 
-    # your code
+    biggest_spender_id, most_money_spent = get_the_buyer_id_spent_most_and_the_money_spent()
+    biggest_spender_name = crm.get_name_by_id(biggest_spender_id)
+    return biggest_spender_name
 
 
 def get_the_buyer_id_spent_most_and_the_money_spent():
@@ -99,7 +102,15 @@ def get_the_buyer_id_spent_most_and_the_money_spent():
         tuple: Tuple of customer id and the sum the customer spent eg.: (aH34Jq#&, 42)
     """
 
-    # your code
+    customer_ids = sales.get_all_customer_ids()
+    sales_for_customer_dict = sales.get_all_sales_ids_for_customer_ids()
+    most_money_spent = 0
+    for customer_id in customer_ids:
+        sum_of_prices = get_the_sum_of_prices(sales_for_customer_dict[customer_id])
+        if sum_of_prices > most_money_spent:
+            most_money_spent = sum_of_prices
+            biggest_spender_id = customer_id
+    return (biggest_spender_id, most_money_spent)
 
 
 def get_the_most_frequent_buyers_names(num=1):
@@ -115,7 +126,15 @@ def get_the_most_frequent_buyers_names(num=1):
             The first one bought the most frequent. eg.: [('Genoveva Dingess', 8), ('Missy Stoney', 3)]
     """
 
-    # your code
+    ID_ = 0
+    SALES = 1
+
+    frequent_buyers_with_ids = get_the_most_frequent_buyers_ids(num)
+    frequent_buyers_with_names = []
+    for line in frequent_buyers_with_ids:
+        new_line = (crm.get_name_by_id(line[ID_]), line[SALES])
+        frequent_buyers_with_names.append(new_line)
+    return frequent_buyers_with_names
 
 
 def get_the_most_frequent_buyers_ids(num=1):
@@ -131,4 +150,13 @@ def get_the_most_frequent_buyers_ids(num=1):
             The first one bought the most frequent. eg.: [(aH34Jq#&, 8), (bH34Jq#&, 3)]
     """
 
-    # your code
+    ID_ = 0
+    SALES = 1
+
+    customer_ids = sales.get_all_customer_ids()
+    sales_for_customer_dict = sales.get_all_sales_ids_for_customer_ids()
+    sales_for_customer_iterable = sales_for_customer_dict.items()
+    # which ones are biggest buyers?
+    sales_for_customer_tuples = [(sales_for_customer_iterable[ID_], len(sales_for_customer_iterable[SALES])) for customer in sales_for_customer_iterable]
+    sales_for_customer_tuples.sort(key=lambda x: -x[SALES])
+    return sales_for_customer_tuples
