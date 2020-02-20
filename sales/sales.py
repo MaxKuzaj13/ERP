@@ -61,7 +61,9 @@ def start_module():
                    "Get_all_customer_ids",
                    "Get_all_customer_ids_from_table",
                    "Get_all_sales_ids_for_customer",
-                   "Get_all_sales_ids_for_customer_ids_from_table"
+                   "Get_all_sales_ids_for_customer_ids_from_table",
+                   "Get_num_of_sales_per_customer_ids",
+                   "Get_num_of_sales_per_customer_ids_from_table"
                         ]
 
         #options = list_options
@@ -97,6 +99,7 @@ def start_module():
             ui.print_result(get_item_title_sold_last_from_table(table), 'TITLE')
         elif option == "12":
             print(get_the_sum_of_prices(test_lista_id))  # TYLKO DO TESTOW
+            #TODO ZAKOMENTOWAŁEM BO PRZEKAZUJESZ ZMIENNE zmień na ui print_result lub na print -
         # elif option == "13":
         #     get_the_sum_of_prices_from_table((table, item_ids))
         # elif option == '14':
@@ -111,10 +114,10 @@ def start_module():
             get_all_sales_ids_for_customer_ids()
         elif option == '19':
             get_all_sales_ids_for_customer_ids_from_table(table)
-        # elif option == '20':
-        #     get_num_of_sales_per_customer_ids()
-        # elif option == '21':
-        #     get_num_of_sales_per_customer_ids_from_table(table)
+        elif option == '20':
+            ui.print_result(get_num_of_sales_per_customer_ids(), '')
+        elif option == '21':
+            ui.print_result(get_num_of_sales_per_customer_ids_from_table(table), '')
         elif option == "0":
             break
 
