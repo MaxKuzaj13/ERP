@@ -223,7 +223,7 @@ def get_title_by_id(id):
     Returns:
         str: the title of the item
     """
-
+    #done
     # your code
 
 
@@ -239,7 +239,7 @@ def get_title_by_id_from_table(table, id):
     Returns:
         str: the title of the item
     """
-
+    #done
     # your code
 
 
@@ -251,7 +251,7 @@ def get_item_id_sold_last():
     Returns:
         str: the _id_ of the item that was sold most recently.
     """
-
+    #Arek.T
     # your code
 
 
@@ -265,7 +265,7 @@ def get_item_id_sold_last_from_table(table):
     Returns:
         str: the _id_ of the item that was sold most recently.
     """
-
+    #Arek.T
     # your code
 
 
@@ -279,7 +279,7 @@ def get_item_title_sold_last_from_table(table):
     Returns:
         str: the _title_ of the item that was sold most recently.
     """
-
+    #Arek.T
     # your code
 
 
@@ -342,6 +342,11 @@ def get_customer_id_by_sale_id(sale_id):
     Returns:
          str: customer_id that belongs to the given sale id
     """
+    customer_id = []
+    for items in table:
+        if sale_id == items[0]:
+            customer_id.append(items[6])
+    return customer_id
 
     # your code
 
@@ -357,7 +362,11 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
     Returns:
         str: customer_id that belongs to the given sale id
     """
-
+    customer_id = []
+    for items in table:
+        if sale_id == items[0]:
+            customer_id.append(items[6])
+    return customer_id
     # your code
 
 
@@ -368,7 +377,7 @@ def get_all_customer_ids():
     Returns:
          set of str: set of customer_ids that are present in the table
     """
-
+    #Arek.T
     # your code
 
 
@@ -381,7 +390,7 @@ def get_all_customer_ids_from_table(table):
     Returns:
          set of str: set of customer_ids that are present in the table
     """
-
+    #Arek.T
     # your code
 
 
@@ -397,7 +406,7 @@ def get_all_sales_ids_for_customer_ids():
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
             all the sales id belong to the given customer_id
     """
-
+    #Arek.T
     # your code
 
 
@@ -413,8 +422,14 @@ def get_all_sales_ids_for_customer_ids_from_table(table):
          (dict of (key, value): (customer_id, (list) sale_ids)) where the sale_ids list contains
          all the sales id belong to the given customer_id
     """
-
+    #Arek.T
     # your code
+
+def get_add(list):
+    sum = 0
+    for items in list:
+        sum += items
+    return sum
 
 
 def get_num_of_sales_per_customer_ids():
@@ -426,8 +441,17 @@ def get_num_of_sales_per_customer_ids():
      Returns:
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
-
-    # your code
+    table = data_manager.get_table_from_file("sales/sales.csv")
+    my_dict = {}
+    for t in table:
+        sum = 0
+        if t[6] not in my_dict:
+            my_dict.setdefault(t[6], []).append((sum+1))
+        else:
+            my_dict.setdefault(t[6], []).append((sum+1))
+    result = {key: get_add(values) for key, values in my_dict.items()}
+    return result
+    
 
 
 def get_num_of_sales_per_customer_ids_from_table(table):
@@ -441,4 +465,12 @@ def get_num_of_sales_per_customer_ids_from_table(table):
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
-    # your code
+    my_dict = {}
+    for t in table:
+        sum = 0
+        if t[6] not in my_dict:
+            my_dict.setdefault(t[6], []).append((sum+1))
+        else:
+            my_dict.setdefault(t[6], []).append((sum+1))
+    result = {key: get_add(values) for key, values in my_dict.items()}
+    return result
