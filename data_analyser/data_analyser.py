@@ -34,8 +34,8 @@ def start_module():
     """
     while True:
         # List of available option
-        list_options = ['get_the_last_buyer_name',
-                        'get_the_last_buyer_id',
+        list_options = ['Get the last buyer\'s name',
+                        'Get the last buyer\'s ID',
                         'Remove employee',
                         'Update employee',
                         'Get oldest employee',
